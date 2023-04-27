@@ -7,12 +7,3 @@ fn string_collection(st:&str) -> Vec<String> {
     }
     c
 }
-
-
-fn main() {
-    let a = ["asd", "qwe", "zxc"];
-    let b = string_collection(a[1]);
-    
-    println!("{:?}", b);
-    println!("{:?}", a);
-}
