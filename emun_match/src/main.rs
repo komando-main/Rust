@@ -21,7 +21,7 @@ impl<T> Yuu<T> for Asd<T> {
 
     fn get_enum_rt(&self) -> &T {
         match &self.qq {
-            self::Rt::Vas(a) => a,
+            self::Rt::Vas(a) => a,//이뮨을 활용한 매치 사용법
         }
     }
 }
