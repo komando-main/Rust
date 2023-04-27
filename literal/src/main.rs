@@ -11,7 +11,7 @@ fn main() {
     let forty_twos = [42.0, 42f32, 42.0_f32];//실수도 접미사로 정의가 가능하다
     println!("{:02}", forty_twos[0]);
 
-    let a = -0x_ffff_i64;//접미사 접두사 전부 값에 쓸수있다.
+    let a = -0x_ffff_i64;//접두사 접미사 전부 값에 쓸수있다.
     println!("-0x_ffff_i64 = {}", a);
 
 }
