@@ -1,0 +1,12 @@
+[package]
+name = "complex"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+#외부 라이브러리 다운 필요시 이부분에 필요 라이브러리 이름과 버전을 적어주면 알아서 다운받아 컴파일해준다
+#패키지 다운로드라고 보면 된다 Java보다 훠얼씬 좋다 간편하고 전용 페키지 괄리 및 저장소가 따로 존재한다!
+#버전별로 사용할수있어 아주 편하다~!
+num = "0.4"
