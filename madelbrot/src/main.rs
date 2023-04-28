@@ -31,7 +31,7 @@ fn mandelbrot_ad_point(cx:f64, cy:f64, max_iters:usize) -> usize {//자 4각형�
         }
         z=z*z+c;//공간확보
     }
-    max_iters//변경된 값을 보낸다
+    max_iters//값을 보낸다
 }
 fn render_mandelbrot(escape_valse:Vec<Vec<usize>>){//데이터를 체운다 (x축 y축 [y[x]] )
     for row in escape_valse{//세로줄 y
