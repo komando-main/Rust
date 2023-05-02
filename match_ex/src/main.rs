@@ -1,6 +1,6 @@
 fn main() {
     
-    let some_u8_value = 3;
+    let some_u8_value:i64 = 3;
     match some_u8_value {
         1 => println!("one"),
         3 => println!("three"),
