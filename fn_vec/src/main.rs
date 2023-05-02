@@ -7,7 +7,7 @@ fn string_collection(st:&str) -> Vec<String> {
     c
 }
 
-fn str_array(st:&[&str;3])->Vec<String>{
+fn str_array(st:&[&str;3]) -> Vec<String> {
     let mut c = vec![];
     // println!("str_array 함수 안 {:?}", st);
     for a in st.iter() {
