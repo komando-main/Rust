@@ -37,14 +37,4 @@ fn main() {
         }
     }
 
-    let h = ("qwe", "asd".to_owned(), 123);
-    let mut l = 0;
-    while l < 3 {
-        println!("{}", h.0);
-        l+=1;
-    }
-
-
-
-
 }
