@@ -36,5 +36,12 @@ fn main() {
             _n => println!("{}", i),
         }
     }
+    
+    let r = ["qwe", "asd", "zxc"];
+    for i in r.iter() {
+        if *i == "qwe" {
+            println!("{}", i);
+        }
+    }
 
 }
