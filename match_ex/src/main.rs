@@ -44,4 +44,10 @@ fn main() {
         }
     }
 
+    let j = ["qwe".to_owned(),"asd".to_owned(),"zxc".to_owned()];
+    for i in j.iter() {
+        if i == "asd" {
+            println!("{}", i);
+        }
+    }
 }
