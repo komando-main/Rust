@@ -9,7 +9,7 @@ fn main() {
     let frction_bits = n_bits << 12;
     let frction_bits = frction_bits >> 12;   // & 000fffffffffffff
     let combine_bits = sign_bits + exponent_bits + frction_bits;
-    let combine_f64 = f64::from_bits(combine_bits);//비트를 그대로 f64에 표현한다 as f64는 안됨
+    let combine_f64 = f64::from_bits(combine_bits);//비트를 그대로 f64에 표현한다 as f64는 안된다
 
     println!("부호 {:064b}", sign_bits);
     println!("지수 {:064b}", exponent_bits);
