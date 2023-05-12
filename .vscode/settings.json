@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.linkedProjects": [
+        ".\\generic_token_impl_copy\\Cargo.toml",
+        ".\\generic_token_impl\\Cargo.toml"
+    ]
+}
