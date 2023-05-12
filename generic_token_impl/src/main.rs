@@ -16,7 +16,7 @@ trait Lll<A, B, C> {
     fn get_vec(&self) -> (Vec<&B>, &str);
     fn get_tupl(&self) -> (&A, &A, &B, &B,&C,&C,f32,f64);
 }
-// 참조로 토큰 사용법좀 찿아 봐야 하나.. 이건 또 얼마나 걸리려나
+// 참조로 토큰 사용법좀 찿아 봐야 하나.. 이건 또 얼마나 걸리려나 dlfeks 일단 찾아야지 방법이 있을꺼야.. 없을수도 있것지만...
 impl<A: Add<Output = A> + Clone, B, C> Lll<A, B, C> for Asd<A, B, C> { //A: Add<Output = A> + Clone 이개 핵심이내.. 아 넘기기 밥통아... 여러개 만들어야 하는 불편함이 있구만...
     fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self {
         Self {
