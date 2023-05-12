@@ -1,6 +1,6 @@
 use std::ops::Add;
 #[derive(Debug)]
-struct Asd<A: Add<Output = A>, B, C> {
+struct Asd<A: Add<Output = A>, B, C> {// 더하기 옵션 설정 스트럭터에 설정
 	q: A,
 	w: A,
 	e: B,
@@ -11,15 +11,15 @@ struct Asd<A: Add<Output = A>, B, C> {
 
 trait Lll<A, B, C> {
 	fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self;
-	fn get_list(&self) -> [A; 2];
+	fn get_list(&self) -> [A; 2];//더하기 옵션은 참조값으로 더할수 없다 그러기에 참조된 값을 넘김으로 리턴시킨다
 	fn get_vec(&self) -> (Vec<&B>, &str);
     fn get_tupl(&self) -> (&A, &A, &B, &B,&C,&C,f32,f64);
 }
 
-impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {
+impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {//impl블록에 더하기와 커피도 같이 사용한다고 명시한다 
 	fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self {
 		 Self {
-			q,
+			q,//인자 값의 이름이 스트럭처의 바인드 명과 같다면 q:q 라고 명시 할 필요 없다
 			w,
 			e,
 			r,
@@ -28,7 +28,7 @@ impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {
 		}
 	}
 	fn get_list(&self) -> [A; 2] {
-        [self.q + self.w, self.w]
+        [self.q + self.w, self.w]// .copy() 가 암묵적임으로 명시 할필요 없다 단 정의는 해줘야 한다
     }
 	fn get_vec(&self) -> (Vec<&B>, &str) {
 		(vec![&self.e, &self.r], "잘 할 수 있어")
@@ -39,7 +39,8 @@ impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {
 }
 
 fn main() {
-	let c = Asd::new( 123u32, 456u32, -123i32, -456i32, String::from("Rust 최고"), String::from("재미 있는 Rust!"), ); println!("{:#?}", c);
+	let c = Asd::new( 123u32, 456u32, -123i32, -456i32, String::from("Rust 최고"), String::from("재미 있는 Rust!"), );
+    println!("{:#?}", c);
 	println!();
 	println!("{}, {}", c.get_list()[0], c.get_list()[1]); println!("{:#?}", c.get_list());
 	println!();
