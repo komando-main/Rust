@@ -12,7 +12,7 @@ struct Asd<A: Add<Output = A>, B, C> {
 
 trait Lll<A, B, C> {
     fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self;
-    fn get_list(&self) -> [A; 2];
+    fn get_list(&self) -> [A; 2];//넘기기 사용해라 넘기기...안되면 넘기기~!
     fn get_vec(&self) -> (Vec<&B>, &str);
     fn get_tupl(&self) -> (&A, &A, &B, &B,&C,&C,f32,f64);
 }
