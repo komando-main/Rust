@@ -27,7 +27,7 @@ impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {//impl블�
 			y,
 		}
 	}
-	fn get_list(&self) -> [A; 2] {
+	fn get_list(&self) -> [A; 2] {//카피가 되었기에 넘길수 있다
         [self.q + self.w, self.w]// .copy() 가 암묵적임으로 명시 할필요 없다 단 정의는 해줘야 한다
     }
 	fn get_vec(&self) -> (Vec<&B>, &str) {
