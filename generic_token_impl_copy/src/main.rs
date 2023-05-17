@@ -56,5 +56,5 @@ fn main() {
 	println!("{:#?}", c.get_vec1());
 	println!();
 	println!( "{}, {}, {}, {}, {}, {}, {}, {}", c.get_tupl().0, c.get_tupl().1, c.get_tupl().2, c.get_tupl().3, c.get_tupl().4, c.get_tupl().5, c.get_tupl().6, c.get_tupl().7 );
-	println!("{:#?}", 	c.get_tupl());
+	println!("{:#?}", c.get_tupl());
 }
