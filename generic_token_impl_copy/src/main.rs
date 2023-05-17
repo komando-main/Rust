@@ -46,7 +46,8 @@ fn main() {
 	let c = Asd::new( 123u32, 456u32, -123i32, -456i32, String::from("Rust 최고"), String::from("재미 있는 Rust!"));
     println!("{:#?}", c);
 	println!();
-	println!("123 + 456 = {}, {}", c.get_list()[0], c.get_list()[1]); println!("{:#?}", c.get_list());
+	println!("123 + 456 = {}, {}", c.get_list()[0], c.get_list()[1]); 
+	println!("{:#?}", c.get_list());
 	println!();
 	println!( "{}, {}, {}", c.get_vec().0[0], c.get_vec().0[1], c.get_vec().1 );
 	println!("{:#?}", c.get_vec());
