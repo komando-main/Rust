@@ -1,5 +1,5 @@
 use std::ops::Add;//ops는 참조 자채를 권장하지 않는다 쓰려면 카피 사용 해서 값을 넘기으로 보내야 한다!!!!!!!!!!!
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug)]
 struct Asd<A: Add<Output = A>, B, C> {// 더하기 옵션 설정 스트럭터에 설정 알고나면 정말 아무것도 아닌거다 단지 혼자 하려고 하니 어려운것 뿐이지
 	q: A,
 	w: A,
@@ -10,14 +10,14 @@ struct Asd<A: Add<Output = A>, B, C> {// 더하기 옵션 설정 스트럭터에
 }
 
 trait Lll<A, B, C> {
-fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self;
+	fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self;
 	fn get_list(&self) -> [A; 2];//더하기 옵션은 참조값으로 더할수 없다 그러기에 카피하여 더한값을 넘김으로 보낸다
 	fn get_vec1(&self) -> (Vec<A>, &str);//백터또한 위와 동일하게 카피하여 더한값을 넘김으로 보넨다
 	fn get_vec(&self) -> (Vec<&B>, &str);
 	fn get_tupl(&self) -> (&A, &A, &B, &B,&C,&C,f32,f64);
 }
 
-impl<A: Add<Output = A>+ Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {//impl블록에 스트럭처의 명시한 A제네릭을 ****카피****도 같이 사용한다고 명시한다 
+impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {//impl블록에 스트럭처의 명시한 A제네릭을 ****카피****도 같이 사용한다고 명시한다 
 	fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self {
 		Self {
 			q,//인자 값의 이름이 스트럭처의 바인드 명과 같다면 q:q 라고 명시 할 필요 없다
