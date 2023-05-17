@@ -19,14 +19,14 @@ fn get_tupl(&self) -> (&A, &A, &B, &B,&C,&C,f32,f64);
 
 impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {//impl블록에 스트럭처의 명시한 A제네릭을 ****카피****도 같이 사용한다고 명시한다 
 fn new(q: A, w: A, e: B, r: B, t: C, y: C) -> Self {
-		Self {
-		q,//인자 값의 이름이 스트럭처의 바인드 명과 같다면 q:q 라고 명시 할 필요 없다
-		w,
-		e,
-		r,
-		t,
-		y,
-	}
+Self {
+q,//인자 값의 이름이 스트럭처의 바인드 명과 같다면 q:q 라고 명시 할 필요 없다
+w,
+e,
+r,
+t,
+y,
+}
 }
 fn get_list(&self) -> [A; 2] {//카피가 되었기에 넘길수 있다 참조로는 넘길수 없다!
 	[self.q + self.w, self.w]// .copy() 가 암묵적임으로 명시 할필요 없다 단 정의는 해줘야 하며 참조로 보내면 안된다
