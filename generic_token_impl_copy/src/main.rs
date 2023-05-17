@@ -1,6 +1,6 @@
 use std::ops::Add;
 #[derive(Debug)]
-struct Asd<A: Add<Output = A>, B, C> {// 더하기 옵션 설정 스트럭터에 설정
+struct Asd<A: Add<Output = A>, B, C> {// 더하기 옵션 설정 스트럭터에 설정 알고나면 정말 아무것도 아닌거다 단지 혼자 하려고 하니 어려운것 뿐이지
 	q: A,
 	w: A,
 	e: B,
@@ -43,7 +43,7 @@ impl<A: Add<Output = A> + Copy, B, C> Lll<A, B, C> for Asd<A, B, C> {//impl블�
 }
 
 fn main() {
-	let c = Asd::new( 123u32, 456u32, -123i32, -456i32, String::from("Rust 최고"), String::from("재미 있는 Rust!"), );
+	let c = Asd::new( 123u32, 456u32, -123i32, -456i32, String::from("Rust 최고"), String::from("재미 있는 Rust!"));
     println!("{:#?}", c);
     println!();
 	println!("123 + 456 = {}, {}", c.get_list()[0], c.get_list()[1]); println!("{:#?}", c.get_list());
@@ -51,7 +51,7 @@ fn main() {
 	println!( "{}, {}, {}", c.get_vec().0[0], c.get_vec().0[1], c.get_vec().1 );
 	println!("{:#?}", c.get_vec());
 	println!();
-	println!("123 + 456 = {}, {}, {}, {}", c.get_vec1().0[0], c.get_vec1().0[1], c.get_vec1().0[2], c.get_vec1().1);
+	println!("{1} + {2} = {0}, {3}", c.get_vec1().0[0], c.get_vec1().0[1], c.get_vec1().0[2], c.get_vec1().1);
 	println!("{:#?}", c.get_vec1());
 	println!();
 	println!( "{}, {}, {}, {}, {}, {}, {}, {}", c.get_tupl().0, c.get_tupl().1, c.get_tupl().2, c.get_tupl().3, c.get_tupl().4, c.get_tupl().5, c.get_tupl().6, c.get_tupl().7 );
