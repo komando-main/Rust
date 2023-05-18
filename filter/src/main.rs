@@ -42,6 +42,10 @@ async fn main() {
      */
     let route = route1.or(route2);
     warp::serve(route).run(([0, 0, 0, 0], 8080)).await; //// http://localhost:8000/hello
+    // loop {
+
+    //     println!("{}", line);
+    // }
 }
 /*
 Ok::<_, warp::Rejection>()는 Result 타입의 값을 반환한다.
