@@ -32,8 +32,8 @@ where A: Num + Copy + NumCast, /*Option<A>: Sub<A, Output = A>*/{    //더 쉽�
     }
 
     fn get_list(&self) -> [A;3] {
-        [A::from(56088).unwrap() - (self.q * self.w), self.q, self.w] //num::cast::<i32, A>(1000).unwrap() 케스트 하고 싶은 타입 오... 유용 하다...
-        // [cast::<i32,A>(100000) - (self.q * self.w), self.q, self.w]
+        [A::from(56088).unwrap() - (self.q * self.w), self.q, self.w] //케스트 하고 싶은 타입 오... 유용 하다...
+        // [num::cast::<i32, A>(56088).unwrap() - (self.q * self.w), self.q, self.w]
     }
 
     fn get_vec(&self) -> (Vec<&B>, &str) {
