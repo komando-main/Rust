@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/test.css">
+    </head>
+    <body>
+        <table>
+            {% for item in list %}
+            <tr>
+                <td class="asd" onclick="showPost(event)">{{item}}</td><!--showPost(event) 인자값에 바인드 이름 명시해줘야 오류 안나더라 자바 스크립트에서 이밴트 호출할때-->
+            </tr>
+            {% endfor %}
+        </table>
+        <ul>
+            {% for item in list %}
+            <li class="world" onclick="showPost(event)">{{item}}</li>
+            {% endfor %}
+        </ul>
+        <h1 class="hello world" onclick="showPost(event)">hello world</h1>
+        <form action="/submit" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <input type="submit" value="확인">
+        </form>
+        <script src="/test.js"></script>
+    </body>
+</html>
