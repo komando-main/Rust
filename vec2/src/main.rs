@@ -19,7 +19,7 @@ fn main() {
         .collect();
     println!("{:?}", new_numbers);
 
-    let find_me:Option<i32> = numbers //찾는 값이 없는 겨우도 있기 때문에 옵션타입을 부과하여 none 값을 대으토록 한다
+    let find_me:Option<i32> = numbers //찾는 값이 없는 겨우도 있기 때문에 옵션타입을 부과하여 none 값을 대응토록 한다
         .iter()
         .find(|num| num == &&2)//찾는 값이 없는 경우 none 반환
         .copied();//복사 할때 사용
