@@ -48,13 +48,14 @@ fn main() {
         .max();
     println!("{:?}", max);
 
-    // let numbers2 = vec![5,6,7,8,9];
-    // let take: Vec<_> = numbers2
-    //     .iter()
-    //     .take(3)
-    //     .copied() //앞에서 3개의 원소만 가저 온다
-    //     .collect();
-    // println!("{:?}", take);
+    let numbers2 = vec![5,6,7,8,9];
+    let take: Vec<_> = numbers2
+        .iter()
+        .take(3) //앞에서 3개의 원소만 가저 온다
+        .copied() //위의 참조를 전부 복사 하여 분리된 데이터로 만든다
+        .collect();
+    println!("{:?}", take);
+    
     let numbers2 = vec![5,6,7,8,9];
     let take: Vec<&_> = numbers2
         .iter()
