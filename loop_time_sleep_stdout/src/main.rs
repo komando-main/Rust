@@ -4,7 +4,7 @@ use std::{thread, time};//thread::sleep(time::Duration::from_millis(500)); 사�
 fn main() {
     let mut i = 0;
     loop {
-        print!("\rCount: {}", i); // \n 캐리지 리턴(Carriage Return)의 약자로, 타자기의 캐리지가 시작점으로 되돌아가는 것을 참조
+        print!("\rCount: {}", i); // \r 캐리지 리턴(Carriage Return)의 약자로, 타자기의 캐리지가 시작점으로 되돌아가는 것을 참조
         std::io::stdout().flush().unwrap();
         /*
         std::io::stdout().flush().unwrap()
