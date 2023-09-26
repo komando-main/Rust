@@ -1,8 +1,41 @@
+#![allow(unused_mut)]
+#![allow(unused_must_use)]
 fn main() {
+
+    let n = 32i32;
+    let m = &n;
+    let mc = &m;
+    let c = &n;
+    let cc = &c;
+    let mut x = &n;
+    let xc = &x;
+
+    println!("m이 바라보는 주소 {:p}", m);
+    println!("c가 바라보는 주소 {:p}", c);
+    println!("x가 바라보는 주소 {:p}", x);
+    println!("m이 생성된 주소   {:p}", mc);
+    println!("c가 생성된 주소   {:p}", cc);
+    println!("x가 생성된 주소   {:p}", xc);
+    println!("모든 변수의 값 {} {} {} {} {} {} {}", n, m, mc, c, cc, x, xc);
+    println!("모두 더한값 {}", n + *m + **mc + *c+ **cc + *x + **xc);
+    let a1 = n + *m + *mc + *c + *cc + *x + *xc;
+    println!("모두 더한값 {}", a1);
+    
+    let mut zz = 10;
+    zz+=1;//적용 되어진후 aaa에 적용
+    zz+1;//매인 함수 매모리상 어딘가에 값이 생성되어 있다 let _ = aa+1; 이거와 같은 상태 즉 새로운 바인드가 매인 어딘가에 생성되어저 있다는 경고를 보낸다
+    let aaa = &zz;
+    //zz+=1; //바인드가 이미 위에 빌려저 있기때문에 오류난다 `zz` is assigned to here but it was already borrowed 가변 바인드의 참조는 1개만 사용할수있다 *mut
+    //aaa+=1;//불변 바인드 이기에 값이 변경되어지진 않는다 오류난다 컴파일 불가
+    aaa+1;//매인 함수 매모리상 어딘가에 값이 생성되어 있다 let _ = aaa+1; 이거와 같은 상태 즉 새로운 바인드가 매인 어딘가에 생성되어저 있다는 경고를 보낸다
+    println!("{}", aaa);//빌드는 가능 하지만 aaa+1 적용 되지 않는다
+    
+
     let a = 42;
     let r = &a;//a를 참조한다(매모리 주소값)
     let b = a+*r;//a에 r(이미 참조되어있는 r을 역참조 해서 얻음)를 더하고 이를 b에 할당한다
     println!("{}+{}={}", a, r, b);
+
 }
 //신박한 참조 reference (리패어런스) C로 치면 포인터 개념인대 다르다 완전 다르다 똑같다고 생각 했는대 아녀 완전 틀려 깊게 파고드니 다르더라...
 //C의 포인터는 중간에 참조 되어진 변수가 해재되면 쓰래기 값을 포인터가 지정하는대(댕글링 포인터) 
