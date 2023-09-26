@@ -13,6 +13,23 @@ fn main() {
     let cc = &c;
     let xc = &x;
 
+    let (qwe, asd, zxc) = (-10i32, 10u8, 1000u64);
+    let (lll1, lll2, lll3) = (&qwe, &asd, &zxc);
+    println!("{} {} {}", qwe, asd, zxc);
+    println!("{:p}\n{:p}\n{:p}", lll1, lll2, lll3);
+
+    let [qwe1, qwe2, qwe3] = [15i32;3];
+    let [lll0, lll9, lll8] = [&qwe1, &qwe2, &qwe3];
+    println!("{} {} {}", qwe1, qwe2, qwe3);
+    println!("{:p}\n{:p}\n{:p}", lll0, lll9, lll8);
+
+    // let [qaz, wsx, edc] = [&lll1, &qwe1, &lll3];//let [qaz, wsx, edc] = [&lll1, &qwe1, &lll3];
+    // println!("{:p}\n{:p}\n{:p}", qaz, wsx, edc);//                                     ^^^^^ expected `&i32`, found `&&u64` 배열은 무조건 모든 타입이 같아야 한다!
+
+    let (qaz5, wsx6, edc7) = (&lll2, &qwe1, &lll3);
+    println!("{:p}\n{:p}\n{:p}", qaz5, wsx6, edc7);
+    println!("{}\n{}\n{}", qaz5, wsx6, edc7);
+
     println!("c가 바라보는 주소     {:p}", c);
     println!("m이 바라보는 주소     {:p}", m);
     println!("x가 바라보는 주소     {:p}\n", x);
