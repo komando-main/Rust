@@ -3,23 +3,35 @@
 fn main() {
 
     let n = 32i32;
-    let m = &n;
-    let mc = &m;
     let c = &n;
-    let cc = &c;
+    let m = &n;
     let mut x = &n;
+    let mc = &m;
+    let m1 = &mc;
+    let m2 = &m1;
+    let m3 = &m2;
+    let cc = &c;
     let xc = &x;
 
-    println!("m이 바라보는 주소 {:p}", m);
-    println!("c가 바라보는 주소 {:p}", c);
-    println!("x가 바라보는 주소 {:p}", x);
-    println!("m이 생성된 주소   {:p}", mc);
-    println!("c가 생성된 주소   {:p}", cc);
-    println!("x가 생성된 주소   {:p}", xc);
-    println!("모든 변수의 값 {} {} {} {} {} {} {}", n, m, mc, c, cc, x, xc);
-    println!("모두 더한값 {}", n + *m + **mc + *c+ **cc + *x + **xc);
-    let a1 = n + *m + *mc + *c + *cc + *x + *xc;
-    println!("모두 더한값 {}", a1);
+    println!("c가 바라보는 주소     {:p}", c);
+    println!("m이 바라보는 주소     {:p}", m);
+    println!("x가 바라보는 주소     {:p}\n", x);
+    println!("mc가 바라보는 m  주소 {:p}", mc);
+    println!("m1이 바라보는 mc 주소 {:p}", m1);
+    println!("m2가 바라보는 m1 주소 {:p}\n", m2);
+    println!("c가  생성된 주소      {:p}", cc);
+    println!("x가  생성된 주소      {:p}", xc);
+    println!("mc가 생성된 주소      {:p}", m1);
+    println!("m1이 생성된 주소      {:p}", m2);
+    println!("m2가 생선된 주소      {:p}\n", m3);
+    println!("모든 변수의 값 {} {} {} {} {} {} {} {} {}\n", n, m, mc, m1, m2, c, cc, x, xc);
+    println!("모두 더한값 {}", n + *m + **mc + ***m1 + ****m2 + *c + **cc + *x + **xc);
+    println!("모두 더한값 {}", n + m + *mc + **m1 + ***m2 + c + *cc + x + *xc);
+
+    let a1 = n + *m + **mc + ***m1 + ****m2 + *c + **cc + *x + **xc;//이걸 기준 삼아야 것다 햇갈릴 수 있으니
+    let a2 = n + m + *mc + **m1 + ***m2 + c + *cc + x + *xc;//1번 참조정도는 그냥 무시해도 되나보다!
+
+    println!("모두 더한값 {} {}", a1, a2);
     
     let mut zz = 10;
     zz+=1;//적용 되어진후 aaa에 적용
