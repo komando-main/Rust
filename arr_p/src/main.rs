@@ -1,4 +1,4 @@
-fn print_type_of<T>(_: T) -> String{
+fn print_type_of<T>(_: T) -> String {
     std::any::type_name::<T>().to_string()
 }
 fn main() {
