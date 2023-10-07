@@ -4,8 +4,8 @@ fn main() {
     let b: u8 = 3;
     let result = a.to_digit(10).unwrap() as u8 + b;//숫자 변환 10진수로 해석 as 로 타입 변환가능능
     
-    let c = "222";//string 타입 "" 변환 타입에따른 재약만 있다 
-    let result1: u8 = c.parse::<u8>().unwrap() + b;
+    let _c = "222";//string 타입 "" 변환 타입에따른 재약만 있다 
+    let result1: u8 = _c.parse::<u8>().unwrap() + b;
     
     
     let a1 = 1234;

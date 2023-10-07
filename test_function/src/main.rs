@@ -19,6 +19,7 @@ fn main() {
     // println!("{}", asd);
 
     println!("{}", c);
+    println!("{:?}", c);
 }
 fn add1(i:i64, j:i64)->String{
     // let a=&i.to_string();

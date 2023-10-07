@@ -3,8 +3,8 @@ use std::io::BufReader;
 use std::io::prelude::*;
 
 fn main() {
-    let f = File::open("aaa.txt").unwrap();//File 객체를 만들 때는 경로 인자가 필요하며 파일이 존제하지 않는 경우 오류가 발생한다 이 프로그램의 경우 readme.md가 존재하지 않는다면 강제 종료된다.
-                                           //기본 경로는 프로잭트 폴더 부터이다 ex)카고로 생성시 프로잭트명의 폴더가 기본 경로이다 /file_in_out 폴더 내부에 찾고자 하는 파일이 있어야 한다
+    let f = File::open("../aaa.txt").unwrap();//File 객체를 만들 때는 경로 인자가 필요하며 파일이 존제하지 않는 경우 오류가 발생한다 이 프로그램의 경우 readme.md가 존재하지 않는다면 강제 종료된다.
+                                           //기본 경로는 프로잭트 폴더의 /src (main.rs 파일과 같은 폴더내에 있어야 한다)부터이다 ex)/src 폴더 내부에 찾고자 하는 파일이 있어야 한다 ./현재 폴더 ../상위 폴더
     let mut reader = BufReader::new(f);
 
     let mut line = String::new();//하나의 String 객체를 프로그램 수명 내내 재활용 한다
