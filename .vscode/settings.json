@@ -1,12 +1,21 @@
+// {
+//     "rust-analyzer.linkedProjects": [
+//         ".\\generic_token_impl_copy\\Cargo.toml",
+//         ".\\generic_token_impl\\Cargo.toml",
+//         ".\\generic_token_impl_num\\Cargo.toml",
+//         ".\\generic_token_impl_num\\Cargo.toml",
+//         ".\\generic_token_impl_num\\Cargo.toml",
+//         ".\\generic_token_impl_num\\Cargo.toml",
+//         ".\\generic_token_impl_num\\Cargo.toml",
+//         ".\\generic_token_impl_num\\Cargo.toml"
+//     ]
+// }
 {
-    "rust-analyzer.linkedProjects": [
-        ".\\generic_token_impl_copy\\Cargo.toml",
-        ".\\generic_token_impl\\Cargo.toml",
-        ".\\generic_token_impl_num\\Cargo.toml",
-        ".\\generic_token_impl_num\\Cargo.toml",
-        ".\\generic_token_impl_num\\Cargo.toml",
-        ".\\generic_token_impl_num\\Cargo.toml",
-        ".\\generic_token_impl_num\\Cargo.toml",
-        ".\\generic_token_impl_num\\Cargo.toml"
-    ]
+"editor.semanticTokenColorCustomizations": {
+    "rules": {
+      "*.mutable": {
+        "fontStyle": "", // set to empty string to disable underline, which is the default
+      },
+    }
+  },
 }
