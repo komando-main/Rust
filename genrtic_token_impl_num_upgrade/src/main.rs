@@ -13,6 +13,7 @@ struct Asd<A, B, C> {
 
 trait Lll<A, B, C>: Debug + Any {
     fn new(q:A, w:A, e:B, r:B, t:C, y:C) -> Self where Self: Sized;
+    fn new_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C);
     fn get_list(&self) -> [A;4];
     fn get_vec(&self) -> (Vec<&B>, &str);
     fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64);
@@ -22,7 +23,6 @@ trait Lll<A, B, C>: Debug + Any {
     fn set_r(&mut self, r: B);
     fn set_t(&mut self, t: C);
     fn set_y(&mut self, y: C);
-    fn new_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C);
 }
 
 impl<A, B, C> Lll<A, B, C> for Asd<A, B, C> 
