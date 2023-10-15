@@ -24,4 +24,16 @@ fn main() {
         }
         println!("\t(∑{:?} = {})", a, sum);//배열안의 값을 전부 더한 값을 출력하기
     }
+    let mut str1 = "asd";//불변 속성의 스트링이다 단 바인드 재할당은 가능하다!!
+    // str.push_str(" qwe"); 문자배열 자채에 추가 변경 삭재가 불가능하다!
+    println!("{} {:p}", str1, str1);
+    str1 = "asd qwe";//변경 한것처럼 보이지만 실재로는 새로 생성한 불변 문자열이다!
+    println!("{} {:p}", str1, str1);
+
+    let mut str2 = String::from("zxc");//힙영역에 생성된 가변 스트링이다
+    
+    println!("{} C는 확인할수 있지만 rust는 힙영역 주소값은 볼수 없다", str2);
+    str2.push_str(" vbn");// 문자배열 자채에 추가 변경 삭재가 가능하다!
+    println!("{} C는 확인할수 있지만 rust는 힙영역 주소값은 볼수 없다", str2);
+
 }
