@@ -10,6 +10,7 @@ struct Asd<A, B, C> {//구조채를 만든다 뭐 기계로 치면 도면? 실�
 }
 trait Lll<A, B, C> {//함수의 집합채 라고 보면 된다 그냥 어떤 함수 쓸건지 정의만 한다고 보면 된다 기계로 치면 재료? 순서? 정도 ㅎㅎ
     fn new(q:A, w:A, e:B, r:B, t:C, y:C) -> Self;//이 함수는 참조가 없다 전부 넘김이다!!
+    fn set_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C);
     fn get_list(&self) -> [A;3];//구조채는 참조이나 배열은 넘김이다!
     fn get_vec(&self) -> (Vec<&B>, &str);//전부 참조이다 &str 과 String은 생선 되는곳이 틀리다 C언어 처럼 read-only 메모리가 따로 없다! 단 불변과 가변 const 바인드가 있을뿐 하지만 &str은 불변이다 가변으로 생성하더라도 불변 속성이며 읽기 전용이다 
     fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64);//
@@ -37,7 +38,15 @@ where A: Add<Output = A> + Copy,{//여러게 정의 해야 할때 ***T: Add<Outp
 
     fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64) {//튜플은 타입 및 값을 더 추가 하는대 부담이 덜 하다 타입 상관없이 리턴을 시키면되기에 좀 편하지만 리턴 받을때 타입을 확인이 힘들다!
         (&self.q, &self.w, &self.e, &self.r, &self.t, &self.y, 2.34f32, 4.67f64)//통으로 받기때문에 안에 들어 있는걸 일일이 타입을 확인해야 한다는 수고로움이 있다만.. match로 타입 분리 하면 되기는 한다..
-    }//위의 get_list() 함수가 불려와도 복사 되어진 값을 보낸 것이기에 그대로 참조가 가능하다 
+    }//위의 get_list() 함수가 불려와도 복사 되어진 값을 보낸 것이기에 그대로 참조가 가능하다
+    fn set_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C) {//자바 하던걸 그새 까먹엇내.... ㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+        self.q=q;
+        self.w=w;
+        self.e=e;
+        self.r=r;
+        self.t=t;
+        self.y=y;
+    }
 }
 
 fn main() {
@@ -61,6 +70,8 @@ fn main() {
     //위에서 mut 바인드로 생성 했기때문에 구조체 안의 바인드를 따로 불러와 변결할수 있다! 근대 힙영역의 다이나믹 바인드는 변경 자채가 안되더라....아직 성능 시험중이라고 한다
     c.t="잘 되는군".to_owned();//new() 함수 말고는 접근이 가능하다 단 Self 리턴이 있는 함수가 반인드 생성과 동시에 불려 와서 Self 반환을 끝내놔야 한다!!
     c.y="으음 좋아~!".to_owned();//그리고 new() 이외에는 모든 함수인자가 &self 인자가 1개 로 설계 해 놔서 함수 불러서 따로 인자를 추가 할 수 없다! 
+    println!("{:#?}", c);
+    c.set_asd(456, 789, -456, -789, "업그래이드~!".to_owned(), "아 디지는줄".to_owned());
     println!("{:#?}", c);
     println!();
     println!("{1} + {2} = {0}", c.get_list()[0], c.get_list()[1], c.get_list()[2]);
