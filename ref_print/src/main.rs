@@ -1,6 +1,9 @@
 #![allow(unused_mut)]
 #![allow(unused_must_use)]
-// let a123:u8 = 10; 오로지 함수 안에서만 생성 가능하다
+use std::any::type_name;
+fn type_of<T>(_: &T) -> &str {
+    type_name::<T>()
+}
 fn a000() -> u8 {
     A123
 }
@@ -19,10 +22,54 @@ fn a222() -> u8 {
     A123+s //10+30
 }
 
+// let a123:u8 = 10; 오로지 함수 안에서만 생성 가능하다 let mut 포함!!
+static mut B123:u8 = 10;//스테틱과 컨스트는 타입을 무조건 지정해줘야 한다!!!
+static mut C123:u8 = 10;
 const A123:u8 = 10;//어느영역 이든 생성 가능하다 이 경우는 프로그램이 종료 될때까지 유지된다 상수는 값이 정해지면 불변이다
 const A:u8 = 110;
-fn main() {
 
+fn main() {
+    let x:u8 = 5;
+    let p = &x as *const u8;
+    println!("{:?}", p);
+    let p_plus_one = unsafe { p.offset(1) };//1바이트 이동
+    println!("{:?}", p_plus_one);// 1바이트 (8비트)
+    println!();
+    println!();
+    let x1:u32 = 5;
+    let p1 = &x1 as *const u32;
+    println!("{:?}", p1);
+    let p_plus_one1 = unsafe { p1.offset(1) };//4바이트 이동
+    println!("{:?}", p_plus_one1);// 4바이트 (32비트)
+    println!();
+    println!();
+    let x2:u64 = 5;
+    let p2 = &x2 as *const u64;
+    println!("{:?}", p2);
+    let p_plus_one2 = unsafe { p2.offset(1) };//8바이트 이동
+    println!("{:?}", p_plus_one2);//8 바이트 (64비트)
+    println!();
+    println!();
+    let x3:u128 = 5;
+    let p3 = &x3 as *const u128;
+    println!("{:?}", p3);
+    let p_plus_one3 = unsafe { p3.offset(1) };//16바이트 이동
+    println!("{:?}", p_plus_one3);//16 바이트 (128비트)
+    println!();
+    println!();
+    let mut num1 = 0;
+    unsafe{//안전하지 않은 코드를 실행해야 하는 경우 사용
+        println!("110 {} {:p}", A, &A);
+        println!("10  {}  {:p}", A123, &A123);
+        println!("10  {}  {:p} {}", B123, &B123, type_of(&B123));//코드가 안전하지 않음으로 프로그래며가 직접 책임져야 한다!
+        println!("10  {}  {:p} {}",C123, &C123, type_of(&B123));
+        println!("10  {}  {:p} {}",C123, &B123, type_of(&B123));
+        if type_of(&B123) == "u8" {
+            num1+=B123;
+        }
+    }
+
+    println!("{}", num1);
     let mut asd:&u8 = &A;// 변수 옵션에 참조로 받는다라고 설정 했기때문에 참조로 값을 설정해줘야 한다(주소값을 받는 바인드)
     let mut a1=A;
     println!("{}", a1);
@@ -55,8 +102,10 @@ fn main() {
         println!("A123과 a000()의 값은 값다 {} {}", A123, a000());
     }
 
+
+
     let ppp1 = &a000();
-    // if &A123 == ppp1 { 상수라서 주소비교를 못하개 막아 놧나보다
+    // if &&A123 == &ppp1 { //상수라서 주소비교를 못하개 막아 놧나보다
     //     println!("A123과 a000()의 주소는 다르다 {:p} {:p}", &A123, ppp1);
     // }
 
