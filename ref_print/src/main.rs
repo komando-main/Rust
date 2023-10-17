@@ -29,27 +29,30 @@ const A123:u8 = 10;//어느영역 이든 생성 가능하다 이 경우는 프�
 const A:u8 = 110;
 
 fn main() {
-    let x:u8 = 5;
+    let x:u8 = 5;// 1바이트 (8비트)
     let p = &x as *const u8;
     println!("{:?}", p);
     let p_plus_one = unsafe { p.offset(1) };//1바이트 이동
     println!("{:?}", p_plus_one);// 1바이트 (8비트)
     println!();
     println!();
-    let x1:u32 = 5;
+
+    let x1:u32 = 5;//4바이트 (32비트)
     let p1 = &x1 as *const u32;
     println!("{:?}", p1);
     let p_plus_one1 = unsafe { p1.offset(1) };//4바이트 이동
     println!("{:?}", p_plus_one1);// 4바이트 (32비트)
     println!();
     println!();
-    let x2:u64 = 5;
+    
+    let x2:u64 = 5;//8 바이트 (64비트)
     let p2 = &x2 as *const u64;
     println!("{:?}", p2);
     let p_plus_one2 = unsafe { p2.offset(1) };//8바이트 이동
     println!("{:?}", p_plus_one2);//8 바이트 (64비트)
     println!();
     println!();
+    
     let x3:u128 = 5;
     let p3 = &x3 as *const u128;
     println!("{:?}", p3);
@@ -57,6 +60,7 @@ fn main() {
     println!("{:?}", p_plus_one3);//16 바이트 (128비트)
     println!();
     println!();
+    
     let mut num1 = 0;
     unsafe{//안전하지 않은 코드를 실행해야 하는 경우 사용
         println!("110 {} {:p}", A, &A);
@@ -68,8 +72,8 @@ fn main() {
             num1+=B123;
         }
     }
-
     println!("{}", num1);
+    
     let mut asd:&u8 = &A;// 변수 옵션에 참조로 받는다라고 설정 했기때문에 참조로 값을 설정해줘야 한다(주소값을 받는 바인드)
     let mut a1=A;
     println!("{}", a1);

@@ -37,15 +37,25 @@ where A: Add<Output = A> + Copy,{//여러게 정의 해야 할때 ***T: Add<Outp
     }
 
     fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64) {//튜플은 타입 및 값을 더 추가 하는대 부담이 덜 하다 타입 상관없이 리턴을 시키면되기에 좀 편하지만 리턴 받을때 타입을 확인이 힘들다!
-        (&self.q, &self.w, &self.e, &self.r, &self.t, &self.y, 2.34f32, 4.67f64)//통으로 받기때문에 안에 들어 있는걸 일일이 타입을 확인해야 한다는 수고로움이 있다만.. match로 타입 분리 하면 되기는 한다..
+        (
+            &self.q,
+            &self.w,
+            &self.e,
+            &self.r,
+            &self.t,
+            &self.y,
+            -2.34f32,
+            -4.67f64,
+        )//통으로 받기때문에 안에 들어 있는걸 일일이 타입을 확인해야 한다는 수고로움이 있다만.. match로 타입 분리 하면 되기는 한다..
     }//위의 get_list() 함수가 불려와도 복사 되어진 값을 보낸 것이기에 그대로 참조가 가능하다
     fn set_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C) {//자바 하던걸 그새 까먹엇내.... ㅋㅋㅋㅋㅋㅋㅋㅋㅋ &mut self 이거 안써버릇해서 생각을 못 햇내 단 불변 바인드에서는 사용 불가
-        self.q=q;
-        self.w=w;
-        self.e=e;
-        self.r=r;
-        self.t=t;
-        self.y=y;
+        // self { q, w, e, r, t, y} 이런식으로는 사용이 안된다!!
+        self.q = q;
+        self.w = w;
+        self.e = e;
+        self.r = r;
+        self.t = t;
+        self.y = y;
     }
 }
 

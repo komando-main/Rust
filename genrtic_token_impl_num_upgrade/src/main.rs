@@ -12,7 +12,7 @@ struct Asd<A, B, C> {
 }
 
 trait Lll<A, B, C>: Debug + Any {
-    fn new(q:A, w:A, e:B, r:B, t:C, y:C) -> Self where Self: Sized;
+    fn new(q:A, w:A, e:B, r:B, t:C, y:C) -> Self where Self: Sized;//힙영역 바인드에 생성시 구조체(struct)의 매모리의 크기를 반환하는(return) 함수이다 
     fn new_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C);
     fn get_list(&self) -> [A;4];
     fn get_vec(&self) -> (Vec<&B>, &str);
