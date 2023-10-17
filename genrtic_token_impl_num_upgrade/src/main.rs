@@ -1,6 +1,7 @@
 use num::{Num, NumCast};
 use std::fmt::Debug;
 use std::any::Any;
+
 #[derive(Debug, Clone, Copy)]
 struct Asd<A, B, C> {
     q: A,
@@ -12,8 +13,8 @@ struct Asd<A, B, C> {
 }
 
 trait Lll<A, B, C>: Debug + Any {
-    fn new(q:A, w:A, e:B, r:B, t:C, y:C) -> Self where Self: Sized;//힙영역 바인드에 생성시 구조체(struct)의 매모리의 크기를 반환하는(return) 함수이다 
-    fn new_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C);
+    fn new(q:A, w:A, e:B, r:B, t:C, y:C) -> Self where Self: Sized;//힙영역 바인드에 생성시 구조체(struct)의 매모리의 크기를 반환하는(return) 함수이다
+    fn set_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C);
     fn get_list(&self) -> [A;4];
     fn get_vec(&self) -> (Vec<&B>, &str);
     fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64);
@@ -50,31 +51,38 @@ where A: Num + Copy + NumCast + Debug + 'static, B: Debug + 'static, C: Debug + 
     fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64) {
         (&self.q, &self.w, &self.e, &self.r, &self.t, &self.y, 2.34f32, 4.67f64)
     }
-    fn set_q(&mut self, q: A){
-        self.q = q;
-    }
-    fn set_w(&mut self, w: A){
-        self.w = w;
-    }
-    fn set_e(&mut self, e: B){
-        self.e = e;
-    }
-    fn set_r(&mut self, r: B){
-        self.r = r;
-    }
-    fn set_t(&mut self, t: C){
-        self.t = t;
-    }
-    fn set_y(&mut self, y: C){
-        self.y = y;
-    }
-    fn new_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C){
+
+    fn set_asd(&mut self, q:A, w:A, e:B, r:B, t:C, y:C){
         self.q=q;
         self.w=w;
         self.e=e;
         self.r=r;
         self.t=t;
         self.y=y;
+    }
+    
+    fn set_q(&mut self, q: A){
+        self.q = q;
+    }
+    
+    fn set_w(&mut self, w: A){
+        self.w = w;
+    }
+    
+    fn set_e(&mut self, e: B){
+        self.e = e;
+    }
+    
+    fn set_r(&mut self, r: B){
+        self.r = r;
+    }
+    
+    fn set_t(&mut self, t: C){
+        self.t = t;
+    }
+    
+    fn set_y(&mut self, y: C){
+        self.y = y;
     }
 }
 
@@ -98,7 +106,7 @@ fn main() {
     c.set_y("이얏훟".to_owned());
     println!("{:#?}", c);
     println!();
-    c.new_asd(456_u32, 789_u32, -456_i32, -789_i32, "아 힘들었다".to_owned(), "잘되는구만".to_owned());
+    c.set_asd(456_u32, 789_u32, -456_i32, -789_i32, "아 힘들었다".to_owned(), "잘되는구만".to_owned());
     println!("{:#?}", c);
     println!();
     println!("{3} - ({2} * {1}) = {0}", c.get_list()[0], c.get_list()[1], c.get_list()[2], c.get_list()[3]);
