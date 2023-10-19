@@ -2,7 +2,7 @@ fn main() {
     let a = String::from("hello");
     let z = a.clone();
     let byte = z.bytes().nth(0);
-    
+    println!("{:?}", byte);
     match byte {
         Some(b) => {
                         println!("{}", b);
@@ -34,4 +34,19 @@ fn main() {
     println!("{}", d);
     println!();
     println!("재일 처음 생성한 a 바인더 상태 {}", a);
+
+    let a2 = String::from("hello");
+    let a2_1 = a2.clone();
+    let a2_1_1 = a2_1.bytes();
+    println!("a2_1_1 {:?}", a2_1_1);
+    let a2_1_2 = a2_1.as_bytes();
+    println!("a2_1_1 {:?}", a2_1_2);
+    // let a = String::from("hello");
+    // let z = a.clone();
+    // let byte = z.bytes().nth(0);
+    // println!("{:?}", byte);
+    // match  {
+        
+    // }
+
 }
