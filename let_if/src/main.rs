@@ -1,4 +1,4 @@
-
+#![allow(dead_code)]//코드 경고 무시
 enum Color {
     Red,
     Blue,
