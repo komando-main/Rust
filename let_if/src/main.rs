@@ -1,4 +1,5 @@
 #![allow(dead_code)]//코드 경고 무시
+#[derive(Debug)]
 enum Color {
     Red,
     Blue,
@@ -20,5 +21,22 @@ fn main() {
     }else{
         println!("it's not red");
     }
+
+    
+
+    let col = "Red";
+    let match1 = match col {
+        "Red" => {
+            println!("red");
+            println!("{}", col);
+            Color::Red
+        },
+        _ => {
+            println!("no Color");
+            Color::Green  // 기본값으로 Green을 반환
+        },
+    };
+
+    println!("{:?}", match1);
 
 }
