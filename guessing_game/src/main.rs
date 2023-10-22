@@ -16,7 +16,7 @@ fn main () {
     println!("종료를 원할 경우 stop 종료 exit 중에 입력하세요\n");
     
     loop {
-        print!("정답이라고 생각하는 숫자를 입력 하세요! \n입력 : ");
+        print!("정답이라고 생각하는 숫자를 입력 하세요! \n입력: ");
         io::stdout().flush().unwrap();//print!() 가 read_line() 로 인해 출력이 안되어 중간에 쓰래드를 잠깐 끊어 주엇다!
         
         let mut guess = String::new();
@@ -25,7 +25,7 @@ fn main () {
         println!();//한줄 띄우기 위해 사용 했다
         
         if guess.trim() == "stop" || guess.trim() == "종료" || guess.trim() == "exit" {//매치에서 string을 u32 로 변환 하였기때문에 글자 비교가 안되어 여기에 정의 했다
-            println!("종료 합니다\n");
+            println!("종료 합니다.\n");
             break;
         }
         
@@ -33,16 +33,16 @@ fn main () {
             Ok(num) => num,
             // Err(_) => continue,
             Err(e) => {//중괄호는 영역을 뜻하기도 하지만 순차적으로 실행하는 역활도 하다 (중광호 내에서 위에서 부터 순차적으로 실행 한다)
-                                        println!("입력 값이 잘못 되었습니다! 오류:{e}\n\n확인 값:{guess}\n종료를 원할 경우 stop 종료 exit 중에 입력");
+                                        eprintln!("입력 값이 잘못 되었습니다!\n오류원인: {e}\nplayer 가 입력한 값: {guess}\n종료를 원할 경우 stop 종료 exit 중에 입력\n");
                                         continue;
                                     },
         };
 
-        println!("확인 값: {}", guess);
+        print!("player 가 입력한 값: {}", guess);
 
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("\n입력한 숫자가 작습니다 종료를 원할 경우 stop 종료 exit 중에 입력\n"),
-            Ordering::Greater => println!("\n입력한 숫자가 큽니다 종료를 원할 경우 stop 종료 exit 중에 입력\n"),
+        match guess.cmp(&secret_number) { //use std::cmp::Ordering;//주어진 값과 비교값을 확인하여 큰지 작은지 같은지를 판별할때 쓰는 옵션
+            Ordering::Less => println!("\n입력한 숫자가 작습니다.\n\n종료를 원할 경우 stop 종료 exit 중에 입력\n"),
+            Ordering::Greater => println!("\n입력한 숫자가 큽니다.\n\n종료를 원할 경우 stop 종료 exit 중에 입력\n"),
             Ordering::Equal => {println!("\n정답! 종료합니다.\n"); 
                                 break;
                             },

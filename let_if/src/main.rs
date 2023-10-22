@@ -28,7 +28,7 @@ fn main() {
     let match1 = match col {
         "Red" => {
             println!("red");
-            println!("{}", col);
+            println!("{:?}", col);
             Color::Red
         },
         _ => {

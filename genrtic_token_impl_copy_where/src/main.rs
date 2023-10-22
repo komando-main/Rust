@@ -1,3 +1,6 @@
+#![allow(unused_mut)]
+#![allow(unused_variables)]
+#![allow(unused_unsafe)]
 use std::ops::Add;//스텐다드에 있는 토큰 중 + 토큰만 사용 하려고 모듈을 불러왔다!
 #[derive(Debug, Clone, Copy)]//구조채에는 이개 있어야 println!("{:?}", 확인할 바인드); 를 사용 할수 있다 거이 필수!!
 struct Asd<A, B, C> {//구조채를 만든다 뭐 기계로 치면 도면? 실채가 없다
@@ -30,13 +33,13 @@ where A: Add<Output = A> + Copy,{//여러게 정의 해야 할때 ***T: Add<Outp
 
     fn get_list(&self) -> [A;3] {//인자를 추가하여 값을 더하던지 빼던지 할수 있다 단 연산에 따라 토큰도 추가 해줘야 하며 디폴트 옵션 및 match 또는 if 를 사용하여 유효성 검사와 연산을 해줘야 한다!
         [self.q + self.w, self.q, self.w]//보는 바와 같이 &self 가 아니다 copy() 함수는 암묵적으로 value 를 복사한다 return 또한 &[A;3] 처럼 앞에 & 가 없음으로 복사 값을 넘기는것이다!
-    }//구조채 Asd 안의 값은 여전히 존재 한다
+    }//구조채 Asd 안의 값은 여전히 존재 한다 인자에 자신을 참조하는 형식으로 불러왔기 때분이다 ****&self****
 
     fn get_vec(&self) -> (Vec<&B>, &str) {//이 함수에 a:&str 인자 추가 해주면 및 에 Fun rust 말고 인자로 보내서 바꿔서 리턴 보낼수도 있다 그야 물론 유효성 검사를 해줘야 하지만...
         (vec![&self.e, &self.r], "Fun rust")//Null () 로도 보내려면 몇가지 수정해야 한다.. 받을때도 Option 처리해서 some() 으로 걸러야 한다는 점이 좀 불편 하긴 하지만..
     }
 
-    fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64) {//튜플은 타입 및 값을 더 추가 하는대 부담이 덜 하다 타입 상관없이 리턴을 시키면되기에 좀 편하지만 리턴 받을때 타입을 확인이 힘들다!
+    fn get_tupl(&self) -> (&A, &A, &B, &B, &C, &C, f32, f64) {//튜플은 타입 및 값을 더 추가 하는대 부담이 덜 하다 타입 상관없이 리턴을 시키면 되기에 좀 편하지만 리턴 받을때 타입을 확인이 힘들다!
         (
             &self.q,
             &self.w,
@@ -59,11 +62,72 @@ where A: Add<Output = A> + Copy,{//여러게 정의 해야 할때 ***T: Add<Outp
     }
 }
 
+static mut BNM:u32 = 100;//mut 빼면 불변이다 데이터 타입 빼고는 다 된다
+static mut JHG:&str = "test";//mut 빼면 불변이다
+// const mut RTY:u8 = 3; const는 가변을 지원하지 안는 상수 한번 컴파일되면 절대 변경불가! Cell<T>, RefCell<T> 사용불가 어떠한 방법으로도 변경 불가다!
+const RTY:u8 = 8;//unsafe{}이 필요 없다 rust가 안전성을 확인 할 수 없는 경우만 unsafe{}을 사용 한다
+
 fn main() {
+    unsafe{
+        static mut CAS:u8 = 123;
+        println!("{} {} {}", BNM, JHG, CAS);//스텍에서 불러올때는 안전성을 보장 할 수 없기에 unsafe{} 에서 불러와야 한다!!!
+        BNM = 50;
+        JHG = "kmj";
+        println!("{:?} {:?}", BNM, JHG);
+    }
+    let tkh:&mut u8;//받을때 가변참조일때 가변참조로 표기해야 한다!
+    // println!("-----------------------------> {:?}", tkh); unsafe {}은 수차적 실행에 영향을 받는다
+    unsafe {
+        static mut CAS1:u8 = 123;
+        tkh = &mut CAS1;//보낼때 가변참조이면 받을때도 가변참조로 표기해줘야 한다!
+        
+    };
+    
+
+    println!("-----------------------------> {:?}", tkh);
+
+    *tkh = 20;
+
+    println!("-----------------------------> {:?}", tkh);
+
+    *tkh += 100;
+
+    println!("-----------------------------> {:?}", tkh);
+
+    println!("{GFR}");
+    // {
+    //     const GFR:u8=90; 상수라 할지라도 스코프 밖으로는 못 나간다
+    // }
+    const GFR:u8=90;
+    println!("{RTY}");//상수는 그냥 불러와서 사용 가능하다
+    println!("{GFR}");
+
+    // unsafe {// unsafe {}은 수차적 실행에 영향을 받는다
+    //     static mut CAS1:u8 = 123;
+    //     tkh = &mut CAS1;//보낼때 가변참조이면 받을때도 가변참조로 표기해줘야 한다!
+        
+    // };
+    
+
+    let asd123:String;//let과 let mut의 차이점은 스택에 생성되는지 힙에 생성되는지와는 관련이 없다 둘 다 스택에 생성될 수 있으며, 힙에 생성되는 것은 데이터의 타입과 관련이 있다
+    let mut qwe1:i32;//let과 let mut의 차이점은 스택에 생성되는지 힙에 생성되는지와는 관련이 없다 둘 다 스택에 생성될 수 있으며, 힙에 생성되는 것은 데이터의 타입과 관련이 있다
     let mut c = Asd::new(123u32, 456u32, -123i32, -456i32, String::from("일단은 된다"), String::from("끝까지 한다"));//구현 되것을 실채화 했다 보면되다
+    let mut c12 = Asd::new(1u8, 2u8, 3i32, 4i32, -99999i128, -88888i128);//새로 생성 할때는 타입을 바꿔도 상관 없지만 재사용시 타입변경은 불가능하다!!
+    // static mut BNM:Asd<u8, i32, i128> = unsafe {
+    //     Asd::new(1u8, 2u8, 3i32, 4i32, -99999i128, -88888i128)
+    // }; 이건 사용이 불가능하다 컴파일 단계에서 값까지 초기화 해줘야 하기때문에 매모리 크기는 알아도 값은 컴파일 단계가 아니 런타임 단계에서 확인이 가능하기 때문이다
+    //정말 빠른 속도를 원한다면
+    // use once_cell::sync::Lazy;
+    // use std::sync::Mutex;
+    //위 2가지를 적용 후에 지연 컴파일 시키면 된다고 하는대 그렇게 까지 컴퓨터 성능이 느린것도 아니고.. 엄청 많은 데이터를 사용 하는것이 아니기에 거대 기업의 엄천난 양의 데이터 빽엔드 아니고선 사용할 일이 드믈듯 하다
+    //음..인배디드는 사용 할지도....아주 빠른 동작을 원한다면... 근대 그렇게 까지 빨라야 할게 몇개 없을듯...
+    //뭐 간단한 것은 매인 밖에 //static mut BNM:u8= 100; 또는 static mut JHG:&str = "test"; 이런식의 간단한 value 초기화는 되도 String, hash map, vec(), [type;3]은 불가하다!
+    println!("{:#?}", c12);
     // let c = Asd::new(123u32, 456u32, -123i32, -456i32, String::from("일단은 된다"), String::from("끝까지 한다"));
     //mut 바인드 사용시 값을 변경할수 있다
-    // let f = Asd::get_list(); 경로는 찾을 수 있으나 new() 함수의 Self 리턴 값이 없어서 Asd 는 없다!!
+    // let f = Asd::get_list(); 경로는 찾을 수 있으나 new() 함수의 Self 리턴 값이 없어서 Asd 는 없다!! 말그대로 새로 생성하는 방법이기 때문에 초기값이 없어 사용이 불가능하다 let 자채가 새로 생성 한다는 뜻이다
+    // let j = &Asd::get_list(&self); 당현하개도 안된다 어디를 참조해야 하는지 컴파일이 확인 불가능하다!!
+    // let j1 = 'static &Asd::get_list(&self); 
     println!("{:#?}", c);
     println!();
     println!("{1} + {2} = {0}", c.get_list()[0], c.get_list()[1], c.get_list()[2]);

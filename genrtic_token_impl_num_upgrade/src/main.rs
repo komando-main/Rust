@@ -40,7 +40,7 @@ where A: Num + Copy + NumCast + Debug + 'static, B: Debug + 'static, C: Debug + 
     }
 
     fn get_list(&self) -> [A;4] {
-        [A::from(1_000_000).unwrap() - (self.q * self.w), self.q, self.w, A::from(1_000_000).unwrap()] //케스트 하고 싶은 타입 오... 유용 하다...
+        [A::from(700_000).unwrap() - (self.q * self.w), self.q, self.w, A::from(700_000).unwrap()] //케스트 하고 싶은 타입 오... 유용 하다...
         // [num::cast::<i32, A>(56088).unwrap() - (self.q * self.w), self.q, self.w]
     }
 
@@ -104,6 +104,8 @@ fn main() {
     println!();
     c.set_t("오예".to_owned());
     c.set_y("이얏훟".to_owned());
+    // c.set_t(12345);
+    // c.set_y(98765);
     println!("{:#?}", c);
     println!();
     c.set_asd(456_u32, 789_u32, -456_i32, -789_i32, "아 힘들었다".to_owned(), "잘되는구만".to_owned());
@@ -117,7 +119,7 @@ fn main() {
     println!();
     println!("{}, {}, {}, {}, {}, {}, {}, {}", c.get_tupl().0, c.get_tupl().1, c.get_tupl().2, c.get_tupl().3, c.get_tupl().4, c.get_tupl().5, c.get_tupl().6, c.get_tupl().7);
     println!("{:#?}", c.get_tupl());
-    println!("{:#?}", c.as_mut());
+    println!("{:#?}", c.as_mut().get_list());//이런 식으로도 함수 불러올수 있다!
 }
 /*
 음....java 에 겟터 셋터를 모방했내......푸핫........ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
