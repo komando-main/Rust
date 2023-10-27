@@ -108,7 +108,7 @@ fn main() {
     // c.set_y(98765);
     println!("{:#?}", c);
     println!();
-    c.set_asd(456_u32, 789_u32, -456_i32, -789_i32, "아 힘들었다".to_owned(), "잘되는구만".to_owned());
+    c.set_asd(456_u32, 789_u32, -456_i32, -789_i32, "아 힘들었다".to_owned(), "잘되는구만".to_owned());//한번 적용 된 타입은 중간에 변경이 불가능하다
     println!("{:#?}", c);
     println!();
     println!("{3} - ({2} * {1}) = {0}", c.get_list()[0], c.get_list()[1], c.get_list()[2], c.get_list()[3]);
