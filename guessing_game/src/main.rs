@@ -43,9 +43,10 @@ fn main () {
         match guess.cmp(&secret_number) { //use std::cmp::Ordering;//주어진 값과 비교값을 확인하여 큰지 작은지 같은지를 판별할때 쓰는 옵션
             Ordering::Less => println!("\n입력한 숫자가 작습니다.\n\n종료를 원할 경우 stop 종료 exit 중에 입력\n"),
             Ordering::Greater => println!("\n입력한 숫자가 큽니다.\n\n종료를 원할 경우 stop 종료 exit 중에 입력\n"),
-            Ordering::Equal => {println!("\n정답! 종료합니다.\n"); 
-                                break;
-                            },
+            Ordering::Equal => {
+                                    println!("\n정답! 종료합니다.\n"); 
+                                    break;
+                                },
         }
     }
 }
