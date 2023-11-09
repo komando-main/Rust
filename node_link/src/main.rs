@@ -91,14 +91,14 @@ Table<A, B, C>: PartialEq,
                 return ([down_down_table.q.clone(), down_down_table.w.clone()], [down_down_table.e.clone(), down_down_table.r.clone()], [down_down_table.t.clone(), down_down_table.y.clone()]);
             }
         }
-        panic!("Down table is None");
+        panic!("get_down_twostep_table() Code Err");
     }
     fn get_down_table(&self)->([Option<Box<A>>;2], [Option<Box<B>>;2], [Option<Box<C>>;2]){
         if self.down.is_some() {
             let down_table = self.down.as_ref().unwrap().lock().unwrap();
             return ([down_table.q.clone(), down_table.w.clone()], [down_table.e.clone(), down_table.r.clone()], [down_table.t.clone(), down_table.y.clone()]);
         }
-        panic!("Down table is None");
+        panic!("get_down_table() Code Err");
     }
     // fn get_down_twostep_table(&self)->([Option<Box<A>>;2], [Option<Box<B>>;2], [Option<Box<C>>;2]){
     //     let down_table;
@@ -664,7 +664,7 @@ Table {
                             down: None,
                         },
 thread 'main' panicked at main.rs:94:9:
-Down table is None
+get_down_twostep_table() Code Err
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace  아니 왜 없다고 나오냐? 분명 clone() 썻는대...
                         poisoned: false,
                         ..
