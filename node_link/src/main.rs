@@ -131,3 +131,188 @@ fn main() {
     println!();
     println!("\nstart.get_down_twostep_table()\n {:?}\n", start.get_down_twostep_table());
 }
+
+/*
+뭔가 좀 이상 하다........................
+
+난 다운 설정 다 해놨는대....
+
+[Running] cd "c:\kmj\Rust\node_link\src\" && rustc main.rs && "c:\kmj\Rust\node_link\src\"main
+Table {
+    q: Some(
+        123,
+    ),
+    w: Some(
+        456,
+    ),
+    e: Some(
+        -123,
+    ),
+    r: Some(
+        -456,
+    ),
+    t: Some(
+        "일단은 된다",
+    ),
+    y: Some(
+        "끝까지 한다",
+    ),
+    up: None,
+    down: Some(
+        Mutex {
+            data: Table {
+                q: Some(
+                    23,
+                ),
+                w: Some(
+                    9,
+                ),
+                e: Some(
+                    8,
+                ),
+                r: Some(
+                    7,
+                ),
+                t: Some(
+                    "6",
+                ),
+                y: Some(
+                    "5",
+                ),
+                up: Some(
+                    Mutex {
+                        data: Table {
+                            q: Some(
+                                12,
+                            ),
+                            w: Some(
+                                9,
+                            ),
+                            e: Some(
+                                8,
+                            ),
+                            r: Some(
+                                7,
+                            ),
+                            t: Some(
+                                "6",
+                            ),
+                            y: Some(
+                                "5",
+                            ),
+                            up: Some(
+                                Mutex {
+                                    data: Table {
+                                        q: Some(
+                                            0,
+                                        ),
+                                        w: Some(
+                                            9,
+                                        ),
+                                        e: Some(
+                                            8,
+                                        ),
+                                        r: Some(
+                                            7,
+                                        ),
+                                        t: Some(
+                                            "6",
+                                        ),
+                                        y: Some(
+                                            "5",
+                                        ),
+                                        up: Some(
+                                            Mutex {
+                                                data: Table {
+                                                    q: Some(
+                                                        1,
+                                                    ),
+                                                    w: Some(
+                                                        2,
+                                                    ),
+                                                    e: Some(
+                                                        3,
+                                                    ),
+                                                    r: Some(
+                                                        4,
+                                                    ),
+                                                    t: Some(
+                                                        "5",
+                                                    ),
+                                                    y: Some(
+                                                        "6",
+                                                    ),
+                                                    up: Some(
+                                                        Mutex {
+                                                            data: Table {
+                                                                q: Some(
+                                                                    789,
+                                                                ),
+                                                                w: Some(
+                                                                    12,
+                                                                ),
+                                                                e: Some(
+                                                                    345,
+                                                                ),
+                                                                r: Some(
+                                                                    678,
+                                                                ),
+                                                                t: Some(
+                                                                    "foo",
+                                                                ),
+                                                                y: Some(
+                                                                    "bar",
+                                                                ),
+                                                                up: None,
+                                                                down: None, 전부 다운이 없어? 이거 왜이려?
+                                                            },
+                                                            poisoned: false,
+                                                            ..
+                                                        },
+                                                    ),
+                                                    down: None, 전부 다운이 없어? 이거 왜이려?
+                                                },
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        down: None, 전부 다운이 없어? 이거 왜이려?
+                                    },
+                                    poisoned: false,
+                                    ..
+                                },
+                            ),
+                            down: None, 전부 다운이 없어? 이거 왜이려?
+                        },
+                        poisoned: false,
+                        ..
+                    },
+                ),
+                down: None, 전부 다운이 없어? 이거 왜이려?
+            },
+            poisoned: false,
+            ..
+        },
+    ),
+}
+
+start.get_start_table().2[0].as_ref().unwrap()
+ "일단은 된다"
+
+
+start.get_start_table()
+ ([Some(123), Some(456)], [Some(-123), Some(-456)], [Some("일단은 된다"), Some("끝까지 한다")])
+
+
+
+start.get_down_table()
+ ([Some(23), Some(9)], [Some(8), Some(7)], [Some("6"), Some("5")]) 
+
+
+thread 'main' panicked at main.rs:91:9:
+Down table is None
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+[Done] exited with code=101 in 1.111 seconds
+
+*/
