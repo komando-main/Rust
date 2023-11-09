@@ -12,8 +12,8 @@ struct Table<A, B, C> {
     r:Option<Box<B>>,
     t:Option<Box<C>>,
     y:Option<Box<C>>,
-    up: Option<Arc<Mutex<Table<A, B, C>>>>,//Arc는 'Atomic Reference Counting’의 약자로, 여러 스레드에서 안전하게 공유할 수 있는 참조 카운팅 포인터
-    down: Option<Arc<Mutex<Table<A, B, C>>>>,
+    up: Option<Arc<Mutex<Table<A, B, C>>>>,//이건 잘 잡혀 있긴한대...
+    down: Option<Arc<Mutex<Table<A, B, C>>>>, //Arc는 'Atomic Reference Counting’의 약자로, 여러 스레드에서 안전하게 공유할 수 있는 참조 카운팅 포인터 라는대... 안되던대....clone() 써도 안됨
 }
 
 impl<A, B, C> PartialEq for Table<A, B, C>
@@ -61,11 +61,11 @@ Table<A, B, C>: PartialEq,
         let new_table = Arc::new(Mutex::new(Self::new(q, w, e, r, t, y)));
         if let Some(down) = &self.down {
             
-            new_table.lock().unwrap().up = Some(down.clone());//현래의 테이블에서 down에 데이터 있을경우 up으로 연결 시켜라
+            new_table.lock().unwrap().up = Some(down.clone());//현재의 테이블에서 down에 데이터 있을경우 up으로 연결 시켜라 주소 복재 쓰긴했는대... 안되더라..
             
             println!("set_table() 작동은 하냐??? {:#?}", new_table);
         }
-        self.down = Some(new_table);//down에 새로운 데이터를 추가 하라
+        self.down = Some(new_table.clone());//down에 새로운 데이터를 추가 하라 복재 쓰긴했는대... 안되더라.. 전부 None 로 되어 있는대.. 코드가 잘못 되었나 ㅎㅎ어디부터 봐야 하니 망햇내.........
     }
 
     // fn get_q(&self) -> Option<Box<A>> {
@@ -139,13 +139,10 @@ fn main() {
 뭔가 좀 이상 하다........................
 
 난 다운 설정 다 해놨는대....
-업이 왜?....흠......
+ 다운 이 설정이 안되있내... 전부 None 이군.........
 잘못했나? 근대 빌드가 되내???
 뭐 부터 봐야 하냐 망햇군...............!!!!!!!!!!!!!
-
-   Compiling node_link v0.1.0 (C:\kmj\Rust\node_link)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.37s
-     Running `target\debug\node_link.exe`
+희안하네.. clone() 으로 전부 했는대..
 set_table() 작동은 하냐??? Mutex {
     data: Table {
         q: Some(
@@ -645,8 +642,8 @@ Table {
                                                                 y: Some(
                                                                     "bar",
                                                                 ),
-                                                                up: None,
-                                                                down: None,
+                                                                up: None, 여기두 없네????
+                                                                down: None, 여기에왜 없지?????
                                                             },
                                                             poisoned: false,
                                                             ..
@@ -666,6 +663,9 @@ Table {
                             ),
                             down: None,
                         },
+thread 'main' panicked at main.rs:94:9:
+Down table is None
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace  아니 왜 없다고 나오냐? 분명 clone() 썻는대...
                         poisoned: false,
                         ..
                     },
@@ -683,17 +683,14 @@ start.get_start_table().2[0].as_ref().unwrap()
 
 
 start.get_start_table()
- ([Some(123), Some(456)], [Some(-123), Some(-456)], [Some("일단은 된다"), Some("끝까지 한다")])
+ ([Some(123), Some(456)], [Some(-123), Some(-456)], [Some("일단은 된다"), Some("끝까지 한다")]) 뭐지?????
 
 
 
 start.get_down_table()
- ([Some(23), Some(9)], [Some(8), Some(7)], [Some("6"), Some("5")])
+ ([Some(23), Some(9)], [Some(8), Some(7)], [Some("6"), Some("5")]) 마지막이 찍히내 중간에 생성된건 다 얼로 날려 먹었냐? ㅎㅎ
 
 
-thread 'main' panicked at src\main.rs:94:9:
-Down table is None
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-error: process didn't exit successfully: `target\debug\node_link.exe` (exit code: 101)
 
+[Done] exited with code=101 in 0.995 seconds
 */
