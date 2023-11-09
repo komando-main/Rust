@@ -60,9 +60,12 @@ Table<A, B, C>: PartialEq,
     fn set_table(&mut self, q: A, w: A, e: B, r: B, t: C, y: C) {
         let new_table = Arc::new(Mutex::new(Self::new(q, w, e, r, t, y)));
         if let Some(down) = &self.down {
-            new_table.lock().unwrap().up = Some(down.clone());
+            
+            new_table.lock().unwrap().up = Some(down.clone());//현래의 테이블에서 down에 데이터 있을경우 up으로 연결 시켜라
+            
+            println!("set_table() 작동은 하냐??? {:#?}", new_table);
         }
-        self.down = Some(new_table);
+        self.down = Some(new_table);//down에 새로운 데이터를 추가 하라
     }
 
     // fn get_q(&self) -> Option<Box<A>> {
@@ -136,8 +139,387 @@ fn main() {
 뭔가 좀 이상 하다........................
 
 난 다운 설정 다 해놨는대....
+업이 왜?....흠......
+잘못했나? 근대 빌드가 되내???
+뭐 부터 봐야 하냐 망햇군...............!!!!!!!!!!!!!
 
-[Running] cd "c:\kmj\Rust\node_link\src\" && rustc main.rs && "c:\kmj\Rust\node_link\src\"main
+   Compiling node_link v0.1.0 (C:\kmj\Rust\node_link)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.37s
+     Running `target\debug\node_link.exe`
+set_table() 작동은 하냐??? Mutex {
+    data: Table {
+        q: Some(
+            1,
+        ),
+        w: Some(
+            2,
+        ),
+        e: Some(
+            3,
+        ),
+        r: Some(
+            4,
+        ),
+        t: Some(
+            "5",
+        ),
+        y: Some(
+            "6",
+        ),
+        up: Some(
+            Mutex {
+                data: Table {
+                    q: Some(
+                        789,
+                    ),
+                    w: Some(
+                        12,
+                    ),
+                    e: Some(
+                        345,
+                    ),
+                    r: Some(
+                        678,
+                    ),
+                    t: Some(
+                        "foo",
+                    ),
+                    y: Some(
+                        "bar",
+                    ),
+                    up: None,
+                    down: None,
+                },
+                poisoned: false,
+                ..
+            },
+        ),
+        down: None,
+    },
+    poisoned: false,
+    ..
+}
+set_table() 작동은 하냐??? Mutex {
+    data: Table {
+        q: Some(
+            0,
+        ),
+        w: Some(
+            9,
+        ),
+        e: Some(
+            8,
+        ),
+        r: Some(
+            7,
+        ),
+        t: Some(
+            "6",
+        ),
+        y: Some(
+            "5",
+        ),
+        up: Some(
+            Mutex {
+                data: Table {
+                    q: Some(
+                        1,
+                    ),
+                    w: Some(
+                        2,
+                    ),
+                    e: Some(
+                        3,
+                    ),
+                    r: Some(
+                        4,
+                    ),
+                    t: Some(
+                        "5",
+                    ),
+                    y: Some(
+                        "6",
+                    ),
+                    up: Some(
+                        Mutex {
+                            data: Table {
+                                q: Some(
+                                    789,
+                                ),
+                                w: Some(
+                                    12,
+                                ),
+                                e: Some(
+                                    345,
+                                ),
+                                r: Some(
+                                    678,
+                                ),
+                                t: Some(
+                                    "foo",
+                                ),
+                                y: Some(
+                                    "bar",
+                                ),
+                                up: None,
+                                down: None,
+                            },
+                            poisoned: false,
+                            ..
+                        },
+                    ),
+                    down: None,
+                },
+                poisoned: false,
+                ..
+            },
+        ),
+        down: None,
+    },
+    poisoned: false,
+    ..
+}
+set_table() 작동은 하냐??? Mutex {
+    data: Table {
+        q: Some(
+            12,
+        ),
+        w: Some(
+            9,
+        ),
+        e: Some(
+            8,
+        ),
+        r: Some(
+            7,
+        ),
+        t: Some(
+            "6",
+        ),
+        y: Some(
+            "5",
+        ),
+        up: Some(
+            Mutex {
+                data: Table {
+                    q: Some(
+                        0,
+                    ),
+                    w: Some(
+                        9,
+                    ),
+                    e: Some(
+                        8,
+                    ),
+                    r: Some(
+                        7,
+                    ),
+                    t: Some(
+                        "6",
+                    ),
+                    y: Some(
+                        "5",
+                    ),
+                    up: Some(
+                        Mutex {
+                            data: Table {
+                                q: Some(
+                                    1,
+                                ),
+                                w: Some(
+                                    2,
+                                ),
+                                e: Some(
+                                    3,
+                                ),
+                                r: Some(
+                                    4,
+                                ),
+                                t: Some(
+                                    "5",
+                                ),
+                                y: Some(
+                                    "6",
+                                ),
+                                up: Some(
+                                    Mutex {
+                                        data: Table {
+                                            q: Some(
+                                                789,
+                                            ),
+                                            w: Some(
+                                                12,
+                                            ),
+                                            e: Some(
+                                                345,
+                                            ),
+                                            r: Some(
+                                                678,
+                                            ),
+                                            t: Some(
+                                                "foo",
+                                            ),
+                                            y: Some(
+                                                "bar",
+                                            ),
+                                            up: None,
+                                            down: None,
+                                        },
+                                        poisoned: false,
+                                        ..
+                                    },
+                                ),
+                                down: None,
+                            },
+                            poisoned: false,
+                            ..
+                        },
+                    ),
+                    down: None,
+                },
+                poisoned: false,
+                ..
+            },
+        ),
+        down: None,
+    },
+    poisoned: false,
+    ..
+}
+set_table() 작동은 하냐??? Mutex {
+    data: Table {
+        q: Some(
+            23,
+        ),
+        w: Some(
+            9,
+        ),
+        e: Some(
+            8,
+        ),
+        r: Some(
+            7,
+        ),
+        t: Some(
+            "6",
+        ),
+        y: Some(
+            "5",
+        ),
+        up: Some(
+            Mutex {
+                data: Table {
+                    q: Some(
+                        12,
+                    ),
+                    w: Some(
+                        9,
+                    ),
+                    e: Some(
+                        8,
+                    ),
+                    r: Some(
+                        7,
+                    ),
+                    t: Some(
+                        "6",
+                    ),
+                    y: Some(
+                        "5",
+                    ),
+                    up: Some(
+                        Mutex {
+                            data: Table {
+                                q: Some(
+                                    0,
+                                ),
+                                w: Some(
+                                    9,
+                                ),
+                                e: Some(
+                                    8,
+                                ),
+                                r: Some(
+                                    7,
+                                ),
+                                t: Some(
+                                    "6",
+                                ),
+                                y: Some(
+                                    "5",
+                                ),
+                                up: Some(
+                                    Mutex {
+                                        data: Table {
+                                            q: Some(
+                                                1,
+                                            ),
+                                            w: Some(
+                                                2,
+                                            ),
+                                            e: Some(
+                                                3,
+                                            ),
+                                            r: Some(
+                                                4,
+                                            ),
+                                            t: Some(
+                                                "5",
+                                            ),
+                                            y: Some(
+                                                "6",
+                                            ),
+                                            up: Some(
+                                                Mutex {
+                                                    data: Table {
+                                                        q: Some(
+                                                            789,
+                                                        ),
+                                                        w: Some(
+                                                            12,
+                                                        ),
+                                                        e: Some(
+                                                            345,
+                                                        ),
+                                                        r: Some(
+                                                            678,
+                                                        ),
+                                                        t: Some(
+                                                            "foo",
+                                                        ),
+                                                        y: Some(
+                                                            "bar",
+                                                        ),
+                                                        up: None,
+                                                        down: None,
+                                                    },
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            down: None,
+                                        },
+                                        poisoned: false,
+                                        ..
+                                    },
+                                ),
+                                down: None,
+                            },
+                            poisoned: false,
+                            ..
+                        },
+                    ),
+                    down: None,
+                },
+                poisoned: false,
+                ..
+            },
+        ),
+        down: None,
+    },
+    poisoned: false,
+    ..
+}
 Table {
     q: Some(
         123,
@@ -264,31 +646,31 @@ Table {
                                                                     "bar",
                                                                 ),
                                                                 up: None,
-                                                                down: None, 전부 다운이 없어? 이거 왜이려?
+                                                                down: None,
                                                             },
                                                             poisoned: false,
                                                             ..
                                                         },
                                                     ),
-                                                    down: None, 전부 다운이 없어? 이거 왜이려?
+                                                    down: None,
                                                 },
                                                 poisoned: false,
                                                 ..
                                             },
                                         ),
-                                        down: None, 전부 다운이 없어? 이거 왜이려?
+                                        down: None,
                                     },
                                     poisoned: false,
                                     ..
                                 },
                             ),
-                            down: None, 전부 다운이 없어? 이거 왜이려?
+                            down: None,
                         },
                         poisoned: false,
                         ..
                     },
                 ),
-                down: None, 전부 다운이 없어? 이거 왜이려?
+                down: None,
             },
             poisoned: false,
             ..
@@ -306,13 +688,12 @@ start.get_start_table()
 
 
 start.get_down_table()
- ([Some(23), Some(9)], [Some(8), Some(7)], [Some("6"), Some("5")]) 
+ ([Some(23), Some(9)], [Some(8), Some(7)], [Some("6"), Some("5")])
 
 
-thread 'main' panicked at main.rs:91:9:
+thread 'main' panicked at src\main.rs:94:9:
 Down table is None
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-[Done] exited with code=101 in 1.111 seconds
+error: process didn't exit successfully: `target\debug\node_link.exe` (exit code: 101)
 
 */
