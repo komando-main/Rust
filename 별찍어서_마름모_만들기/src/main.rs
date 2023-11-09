@@ -1,7 +1,7 @@
 fn main() {
     let mut as1 = "     *     ".to_owned();
     
-    let as2 = as1.len();
+    let as2: usize = as1.len();
     let d = as1.trim().len();
     let mut b = 6;
     let mut c = 4;
