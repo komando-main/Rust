@@ -1,5 +1,6 @@
 fn main() {
-    let n:f64 = -419.42;
+    // let n:f64 = -419.42;
+    let n: f64 = -6.000000000000001;
     let n_bits:u64 = n.to_bits();            // 비트 로 저장 할때 사용 하는 함수 to_bits() 원본 비트 1100000001111010001101101011100001010001111010111000010100011111
     
     let sign_bits = n_bits >> 63; 
@@ -21,7 +22,7 @@ fn main() {
     println!("지수 분리 {:064b}\n", exponent_bits);
     println!("원본 비트 {:064b}", n_bits);
     println!("가수 분리 {:064b}\n", mantissa_bits);
-    println!("\n원본 {:064b}", n_bits);
+    println!("원본 {:064b}", n_bits);
     println!("결합 {:064b}\n", combine_bits);
     println!("원본 {}, 결합 {}", n, combine_f64);
 
@@ -30,6 +31,18 @@ fn main() {
     } else {
         println!("원본과 같은지 if 로 태스트 했을때 틀리다 뭐가 틀린거지?");
     }
+
+
+    println!();
+    let i_num:i64 = -4_604_930_618_986_332_159;//1_10000000001_10000000000_0000000000_0000000000_0000000000_0000000001;
+    println!("{:64b}", i_num);
+    // let u_num:u64 = 1384_1813_4547_2321_9457;//1384_1813_4547_2321_9457
+    let u_num:u64 = i_num as u64;
+    println!("{:64b}", u_num);
+    let f = f64::from_bits(u_num);
+    println!("{:64b}", f.to_bits());
+    println!("{f}");
+
     
 }
 /*
