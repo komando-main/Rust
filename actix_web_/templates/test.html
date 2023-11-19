@@ -6,11 +6,11 @@
     </head>
     <body>
         <table>
-            {% for item in list %}<!--러스트의 Template 이용한 구문 if 도 된다-->
             <tr>
+                {% for item in list %}<!--러스트의 Template 이용한 구문 if 도 된다-->
                 <td class="hello" onclick="showPost(event)">{{item}}</td><!--showPost(event) 인자값에 바인드 이름 명시해줘야 오류 안나더라 자바 스크립트에서 이밴트 호출할때-->
+                {% endfor %}
             </tr>
-            {% endfor %}
         </table>
         <ul>
             {% for item in list %}

@@ -59,6 +59,7 @@ Table<A, B, C>: PartialEq,
 
     fn set_table(&mut self, q: A, w: A, e: B, r: B, t: C, y: C) {
         let new_table = Arc::new(Mutex::new(Self::new(q, w, e, r, t, y)));
+
         if let Some(down) = &self.down {
             
             new_table.lock().unwrap().up = Some(down.clone());//현재의 테이블에서 down에 데이터 있을경우 up으로 연결 시켜라 주소 복재 쓰긴했는대... 안되더라..
