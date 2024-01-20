@@ -1,0 +1,5 @@
+C:\kmj\Rust\별찍어서_마름모_만들기\target\debug\deps\lib별찍어서_마름모_만들기-6a4ec58d83c68220.rmeta: src\main.rs
+
+C:\kmj\Rust\별찍어서_마름모_만들기\target\debug\deps\별찍어서_마름모_만들기-6a4ec58d83c68220.d: src\main.rs
+
+src\main.rs:
