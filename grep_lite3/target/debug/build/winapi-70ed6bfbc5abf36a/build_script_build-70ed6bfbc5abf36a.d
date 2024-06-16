@@ -1,0 +1,5 @@
+C:\kmj\Rust\grep_lite3\target\debug\build\winapi-70ed6bfbc5abf36a\build_script_build-70ed6bfbc5abf36a.exe: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\build.rs
+
+C:\kmj\Rust\grep_lite3\target\debug\build\winapi-70ed6bfbc5abf36a\build_script_build-70ed6bfbc5abf36a.d: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\build.rs
+
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\build.rs:

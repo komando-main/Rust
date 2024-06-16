@@ -1,29 +1,43 @@
+#![allow(dead_code, unused_imports)]
 
-#![allow(unused_mut, dead_code)]
-use std::rc::Rc;
-use std::cell::RefCell;
+use std::borrow::{Borrow, BorrowMut};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct Node {
     value: i32,
     next: Option<Box<Node>>,
 }
 
 impl Node {
-    fn new(value: i32) -> Rc<RefCell<Self>> {
-        Rc::new(RefCell::new(Node { value, next: None}))
+    fn new(value: i32) -> Self {
+        Self {
+            value,
+            next : None,
+        }
     }
-    fn set_node(&mut self, value: i32) {
-        let new_node = Node::new(value);
-        self.next = new_node;
+    fn set_node(self, value: i32) -> Node {
+        let mut node = Node::new(value);
+        node.next = Some(Box::new(self));
+        node
     }
+
 }
 
 fn main() {
-    let mut node = Node::new(1);
-    node.borrow_mut().set_node(2);
-    node.borrow_mut().set_node(3);
-    node.borrow_mut().set_node(4);
-
+    let node = Node::new(0);
     println!("{:#?}", node);
+    let mut node1 = node.set_node(1);
+    for i in 2..=5{
+        node1 = node1.set_node(i)
+        
+    }
+
+
+    println!("{:#?}", node1);
+    
+    
+
+
+    // println!("{}", node.borrow_mut().get_mut());
+    
 }

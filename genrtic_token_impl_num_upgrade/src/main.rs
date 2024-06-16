@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use num::{Num, NumCast};
 use std::fmt::Debug;
 use std::any::Any;
