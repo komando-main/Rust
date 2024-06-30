@@ -27,13 +27,13 @@ fn main() {
     let node = Node::new(0);
     println!("{:#?}", node);
     let mut node1 = node.set_node(1);
-    for i in 2..=5{
+    for i in 1..=5{
         node1 = node1.set_node(i)
         
     }
 
 
-    println!("{:#?}", node1);
+    println!("{:#?}", node1.next);
     
     
 

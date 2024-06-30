@@ -7,6 +7,7 @@ fn main() {
     let c = Rc::new(Box::new(30));//참조 카운터 안에 <힙영역>박스된 정수를 담는다
     let d = Arc::new(Mutex::new(40));//원자적(atomic) 참조 카운터에 담긴 정수이며, 상호 배재(mutual exclusion)잠금 방식으로 보호받는다.
     println!("a={:?}, b={:?}, c={:?}, d={:?}", a, b, c, d);
+    println!("a={}, b={}, c={}, d={}", a, b, c, d.lock().unwrap());
 }
 //가비지 컬랙터가 없어도 참조를 사용하기 쉬워지며 데글링 포인트 함점에 걸리지 않을수있다
 //단 시스템 자원을 많이 소비 할 수 있다는 단점도 있다

@@ -23,7 +23,7 @@ impl Asd for Person {
     }
     fn next(self, name:String, age:i32)->Rc<Person> {
         let mut p1 = Person::new(name, age);
-        p1.next = Some(Rc::new(self));
+        p1.next = Some(self.clone().into());
         p1.into()
     }
 }
