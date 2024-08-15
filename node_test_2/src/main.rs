@@ -146,8 +146,8 @@ fn main() {
     // let end = Rc::clone(&current);
     start.borrow_mut().previous = Some(Rc::clone(&current));
     current.borrow_mut().next = Some(Rc::clone(&start));
-
-    let loop_node = Rc::clone(&start);
+    // let loop_node = Rc::clone(&start);
+    let loop_node = start;
     let num = 10000;
     Node::add_data(Rc::clone(&loop_node), num);
     println!("\n");
