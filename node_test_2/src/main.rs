@@ -28,13 +28,13 @@ Rc::new로 RefCell을 감싸서 Node를 생성합니다.
 이렇게 하면 여러 참조자가 이 노드를 공유할 수 있게 됩니다.
 */
     fn link_node(table: Rc<RefCell<Node>>) -> Rc<RefCell<Node>> {
-        let produce_table = Rc::new(RefCell::new(Node {
+        let create_table = Rc::new(RefCell::new(Node {
             num: table.borrow().num + 1,
             next: None,
             previous: Some(Rc::clone(&table)),
         }));
-        table.borrow_mut().next = Some(Rc::clone(&produce_table));
-        produce_table
+        table.borrow_mut().next = Some(Rc::clone(&create_table));
+        create_table
     }
     /*
     fn link_node(table: Rc<RefCell<Node>>) -> Rc<RefCell<Node>>: 주어진 노드 table에 새로운 노드를 연결합니다.
@@ -63,11 +63,11 @@ fn run_table(data: Rc<RefCell<Node>>, num: i32) -> Rc<RefCell<Node>>: num 개의
 
         while let Some(node) = current {
             if count > 23 {
-                println!("count: {}, cycles: {}\nbreak while let!!!", count, count / 12);
+                println!("counts: {}, cycles: {}\nbreak while let!!!", count, count / 12);
                 break;
             }
 
-            println!("count: {}, all_table->num: {}", count, node.borrow().num);
+            println!("counts: {}, all_table->num: {}", count, node.borrow().num);
             current = node.borrow().next.clone();
             count += 1;
         }
@@ -87,7 +87,7 @@ fn all_node_check(all_table: Rc<RefCell<Node>>): 연결 리스트의 노드를 �
                 prev.borrow_mut().next = None;
             }
 
-            println!("remove table->num: {}", table.borrow().num);
+            println!("remove table.borrow().num: {}", table.borrow().num);
 
             let next_node = table.borrow().next.clone();
             if let Some(next) = next_node {
