@@ -143,9 +143,9 @@ fn add_data(data: Rc<RefCell<Node>>, num: i32): 특정 위치에 새로운 노�
 fn main() {
     let start = Node::new();
     let current = Node::run_table(Rc::clone(&start), 10);
-    let end = Rc::clone(&current);
-    start.borrow_mut().previous = Some(Rc::clone(&end));
-    end.borrow_mut().next = Some(Rc::clone(&start));
+    // let end = Rc::clone(&current);
+    start.borrow_mut().previous = Some(Rc::clone(&current));
+    current.borrow_mut().next = Some(Rc::clone(&start));
 
     let loop_node = Rc::clone(&start);
     let num = 10000;
