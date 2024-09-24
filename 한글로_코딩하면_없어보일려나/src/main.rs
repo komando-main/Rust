@@ -10,12 +10,12 @@ fn main() {
     println!("{}",값2(벡터2));
     println!("{}", value2(str2));
 }
-fn 값<'a>(벡터:&'a Vec<&'a str>) -> &'a str {
-    &벡터[0]   
+fn 값<'a>(벡터:&Vec<&'a str>) -> &'a str {
+    벡터[0]   
 }
 
 fn value1(v:&str) -> &str {
-    &v
+    v
 }
 
 fn 값2(벡터:Vec<String>)-> String {

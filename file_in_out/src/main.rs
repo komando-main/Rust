@@ -3,7 +3,7 @@ use std::io::BufReader;
 use std::io::prelude::*;
 
 fn main() {
-    let f = File::open(/*"aaa.txt"*//*"../test.txt"*/"../../sys.py").unwrap();//File 객체를 만들 때는 경로 인자가 필요하며 파일이 존제하지 않는 경우 오류가 발생한다 이 프로그램의 경우 readme.md가 존재하지 않는다면 강제 종료된다.
+    let f = File::open(/*"aaa.txt"*//*"../test.txt"*/"../../안녕 친구들.txt").unwrap();//File 객체를 만들 때는 경로 인자가 필요하며 파일이 존제하지 않는 경우 오류가 발생한다 이 프로그램의 경우 readme.md가 존재하지 않는다면 강제 종료된다.
                                            //기본 경로는 프로잭트 폴더 여기서는 file_in_out 폴더가 절대 경로 이다
     let mut reader = BufReader::new(f);
 
