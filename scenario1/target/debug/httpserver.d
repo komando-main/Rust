@@ -1,0 +1,1 @@
+C:\kmj\Rust\scenario1\target\debug\httpserver.exe: C:\kmj\Rust\scenario1\http\src\HttpResponse.rs C:\kmj\Rust\scenario1\http\src\httprequest.rs C:\kmj\Rust\scenario1\http\src\lib.rs C:\kmj\Rust\scenario1\httpserver\src\handler.rs C:\kmj\Rust\scenario1\httpserver\src\main.rs C:\kmj\Rust\scenario1\httpserver\src\router.rs C:\kmj\Rust\scenario1\httpserver\src\server.rs
