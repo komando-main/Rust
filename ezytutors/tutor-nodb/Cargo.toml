@@ -1,0 +1,17 @@
+[package]
+name = "tutor-nodb"
+version = "0.1.0"
+edition = "2021"
+default-run = "tutor-service"
+
+[[bin]]
+name = "basic-server"
+
+[[bin]]
+name = "tutor-service"
+
+[dependencies]
+actix-web = "4.2.1"
+actix-rt = "2.7.0"
+serde = {version = "1.0.110", features = ["derive"]}
+chrono = {version = "0.4.11", features = ["serde"]}
