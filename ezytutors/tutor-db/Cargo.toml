@@ -7,6 +7,10 @@ edition = "2021"
 name = "tutor-db"
 path = "src/bin/tutor-db.rs"
 
+[[bin]]
+name = "iter2"
+path = "src/bin/iter2.rs"
+
 [dependencies]
 #Actix web framework and run-time
 actix-web = "4.1.0"
