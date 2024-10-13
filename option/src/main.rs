@@ -24,12 +24,15 @@ fn main() -> Result<(), String>{
     //     println!("Error: {}", err);  // 오류 메시지를 출력
     //     -1  // 대체 값 반환
     // });
-    let out_value = opt(None)?;
+    let out_value = opt(None).unwrap_or_default();
     println!("{out_value}");
     // match out_value {
     //     Ok(a)=>println!("{a}"),
     //     Err(a)=>println!("{a}")
     // }
+
+    // let out_value = opt(None)?;
+    // println!("{out_value}");
 
     Ok(())
 }
