@@ -13,7 +13,7 @@ fn example() -> Result<String, String> {
     let str2 = "내용 무 투우~!".to_string();
     if true {
         // 성공적인 경우
-        Ok(format!("Hello, main() -> Result<(), String> {{{str1}, {}}}", str2).to_string()) // String 값을 반환
+        Ok(format!("Hello, main() -> Result<(), String> {{{str1}, {}}} \\ \\ \\\\", str2).to_string()) // String 값을 반환
     } else {
         // 실패한 경우
         Err("An error occurred".to_string()) // String 오류 반환
