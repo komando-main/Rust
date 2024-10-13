@@ -25,6 +25,8 @@ fn example() -> Result<String, String> {
 // Rust 표준 라이브러리는 Termination이라는 트레잇을 사용하여 프로그램의 종료 상태를 처리 하기에 기본 처리방식이
 // Result<(), E> 이걸로 고정되어 있다! 절대 못 바꾼다~! 규정~! 준수~!
 
+// 간혹 규정을 무시 해야 할 상황이 오긴 한다 그럴때 규정을 무시 한 순간부터는 ******본인이 전부 모두 다 책임!!!!!!!****** 저야 한다~!!!!!!!!!!!
+
 /*
    Compiling main_result v0.1.0 (C:\kmj\Rust\main_result)
 error[E0277]: the trait bound `String: Termination` is not satisfied
