@@ -5,7 +5,7 @@ use std::cell::RefCell;
 struct Node {
     num: i32,
     next: Option<Rc<RefCell<Node>>>,
-    previous: Option<Weak<RefCell<Node>>>,
+    previous: Option<Weak<RefCell<Node>>>, //Weak는 Rc없이 단독 사용 불가
 }
 
 impl Node {
