@@ -21,9 +21,10 @@ impl Node {
         let create_table = Rc::new(RefCell::new(Node {
             num: table.borrow().num + 1,
             next: None,
-            previous: Some(Rc::downgrade(&table)),  // 약한 참조로 순환 참조 방지
+            previous: Some(Rc::downgrade(&table)),  // 약한 참조로 순환 참조 방지 Rc::downgrade(&table) 이전의 노드 주소값을 약한참조로 지정한다다
         }));
-        table.borrow_mut().next = Some(Rc::clone(&create_table));
+        
+        table.borrow_mut().next = Some(Rc::clone(&create_table));// Rc::clone(&create_table) 새로만든 노드의 주소값만 복사한다
         create_table
     }
 

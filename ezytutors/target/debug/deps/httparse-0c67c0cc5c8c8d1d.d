@@ -1,0 +1,12 @@
+C:\kmj\Rust\ezytutors\target\debug\deps\libhttparse-0c67c0cc5c8c8d1d.rmeta: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\lib.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\iter.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\macros.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\mod.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\swar.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\sse42.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\avx2.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\runtime.rs
+
+C:\kmj\Rust\ezytutors\target\debug\deps\httparse-0c67c0cc5c8c8d1d.d: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\lib.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\iter.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\macros.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\mod.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\swar.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\sse42.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\avx2.rs C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\runtime.rs
+
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\lib.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\iter.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\macros.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\mod.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\swar.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\sse42.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\avx2.rs:
+C:\Users\kmjkm\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\httparse-1.9.5\src\simd\runtime.rs:
