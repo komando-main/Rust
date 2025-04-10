@@ -9,16 +9,16 @@ struct Node {
 }
 
 impl Node {
-    fn new() -> Rc<RefCell<Node>> {
-        Rc::new(RefCell::new(Node {
+    fn new() -> Rc<RefCell<Self>> {
+        Rc::new(RefCell::new(Self {
             num: 0,
             next: None,
             previous: None,
         }))
     }
 
-    fn link_node(current: Rc<RefCell<Node>>) -> Rc<RefCell<Node>> {
-        let new_node = Rc::new(RefCell::new(Node {
+    fn link_node(current: Rc<RefCell<Self>>) -> Rc<RefCell<Self>> {
+        let new_node = Rc::new(RefCell::new(Self {
             num: current.borrow().num + 1,
             next: None,
             previous: Some(Rc::downgrade(&current)),
@@ -28,78 +28,79 @@ impl Node {
         new_node
     }
 
-    fn run_table(start: Rc<RefCell<Node>>, count: i32) -> Rc<RefCell<Node>> {
-        let mut current = start;
-        for _ in 0..count {
-            current = Self::link_node(current);
-        }
-        current
+    fn run_table(start: Rc<RefCell<Self>>, count: i32) -> Rc<RefCell<Self>> {
+        (0..count).fold(start, |current, _| Self::link_node(current))
     }
 
-    fn all_node_check(start: Rc<RefCell<Node>>) {
-        let mut current = Some(Rc::clone(&start));
+    fn all_node_check(start: Rc<RefCell<Self>>) {
+        let mut current = Some(start);
         let mut count = 0;
 
-        while let Some(node) = current {
+        while let Some(node_rc) = current {
             if count > 23 {
                 println!("counts: {}, cycles: {}\nbreak while let!!!", count, count / 12);
                 break;
             }
 
-            println!("counts: {}, num: {}", count, node.borrow().num);
-            current = node.borrow().next.clone();
+            let node = node_rc.borrow();
+            println!("counts: {}, num: {}", count, node.num);
+            current = node.next.clone();
             count += 1;
         }
     }
 
-    fn add_data(current: Rc<RefCell<Node>>, num: i32) {
-        // 3칸 위의 노드 찾기
+    fn add_data(current: Rc<RefCell<Self>>, num: i32) {
         let mut target = Rc::clone(&current);
         for _ in 0..3 {
             let prev = {
-                let target_borrow = target.borrow();
-                target_borrow.previous.as_ref()
-                    .expect("No previous node found")
+                let target_ref = target.borrow();
+                target_ref.previous
+                    .as_ref()
+                    .expect("No previous node")
                     .upgrade()
-                    .expect("Previous node missing")
+                    .expect("Previous node dropped")
             };
             target = prev;
         }
-
-        let up = target.borrow().previous.as_ref()
-            .and_then(|w| w.upgrade())
-            .expect("No upper node");
-
-        let down = Rc::clone(&target);
-
-        let inserted = Rc::new(RefCell::new(Node {
+    
+        let up = {
+            let target_ref = target.borrow();
+            target_ref.previous
+                .as_ref()
+                .and_then(|w| w.upgrade())
+                .expect("No upper node")
+        };
+    
+        let inserted = Rc::new(RefCell::new(Self {
             num,
-            next: Some(Rc::clone(&down)),
+            next: Some(Rc::clone(&target)),
             previous: Some(Rc::downgrade(&up)),
         }));
-
+    
         up.borrow_mut().next = Some(Rc::clone(&inserted));
-        down.borrow_mut().previous = Some(Rc::downgrade(&inserted));
+        target.borrow_mut().previous = Some(Rc::downgrade(&inserted));
     }
 
-    fn remove_table(mut table: Rc<RefCell<Node>>) {
-        loop {
-            let previous_node = table.borrow().previous.clone();
-            if let Some(prev) = previous_node.and_then(|weak| weak.upgrade()) {  // Weak를 강한 참조로 업그레이드
-                prev.borrow_mut().next = None;
+    fn remove_table(node: Rc<RefCell<Self>>) {
+        let mut current = Some(node);
+    
+        while let Some(n) = current {
+            {
+                let node_ref = n.borrow_mut();
+                if let Some(prev_rc) = node_ref.previous.as_ref().and_then(|w| w.upgrade()) {
+                    prev_rc.borrow_mut().next = None;
+                }
+                println!("remove table.borrow().num: {}", node_ref.num);
             }
-
-            println!("remove table.borrow().num: {}", table.borrow().num);
-
-            let next_node = table.borrow().next.clone();
-            if let Some(next) = next_node {
-                table = Rc::clone(&next);
-            } else {
-                break;
-            }
+    
+            let next = {
+                n.borrow().next.clone()
+            };
+            current = next;
         }
     }
 }
+
 fn main() {
     let start = Node::new();
     let end = Node::run_table(Rc::clone(&start), 10);
@@ -110,14 +111,17 @@ fn main() {
 
     // 중간에 데이터 추가
     let loop_node = Rc::clone(&start);
-    let insert_value = 10000;
-    Node::add_data(Rc::clone(&loop_node), insert_value);
+    Node::add_data(Rc::clone(&loop_node), 10000);
 
     println!("\n▶ All Node Check:\n");
     Node::all_node_check(Rc::clone(&loop_node));
 
+    // 💡 순환 제거 후 삭제
+    end.borrow_mut().next = None;
+    start.borrow_mut().previous = None;
+
     println!("\n▶ Removing Nodes:\n");
-    Node::remove_table(Rc::clone(&loop_node));
+    Node::remove_table(loop_node);
 
     println!("\n▶ Done!");
 }
