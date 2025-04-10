@@ -23,7 +23,7 @@ impl Node {
             next: None,
             previous: Some(Rc::downgrade(&table)),  // 약한 참조로 순환 참조 방지 Rc::downgrade(&table) 이전의 노드 주소값을 약한참조로 지정한다다
         }));
-        
+
         table.borrow_mut().next = Some(Rc::clone(&create_table));// Rc::clone(&create_table) 새로만든 노드의 주소값만 복사한다
         create_table
     }
@@ -52,24 +52,6 @@ impl Node {
         }
     }
 
-    fn remove_table(mut table: Rc<RefCell<Node>>) {
-        loop {
-            let previous_node = table.borrow().previous.clone();
-            if let Some(prev) = previous_node.and_then(|weak| weak.upgrade()) {  // Weak를 강한 참조로 업그레이드
-                prev.borrow_mut().next = None;
-            }
-
-            println!("remove table.borrow().num: {}", table.borrow().num);
-
-            let next_node = table.borrow().next.clone();
-            if let Some(next) = next_node {
-                table = Rc::clone(&next);
-            } else {
-                break;
-            }
-        }
-    }
-
     fn add_data(data: Rc<RefCell<Node>>, num: i32) {
         let mut data = Rc::clone(&data);
         for _ in 0..3 {
@@ -88,6 +70,24 @@ impl Node {
 
         up.borrow_mut().next = Some(Rc::clone(&add_data));
         down.borrow_mut().previous = Some(Rc::downgrade(&add_data));
+    }
+    
+    fn remove_table(mut table: Rc<RefCell<Node>>) {
+        loop {
+            let previous_node = table.borrow().previous.clone();
+            if let Some(prev) = previous_node.and_then(|weak| weak.upgrade()) {  // Weak를 강한 참조로 업그레이드
+                prev.borrow_mut().next = None;
+            }
+
+            println!("remove table.borrow().num: {}", table.borrow().num);
+
+            let next_node = table.borrow().next.clone();
+            if let Some(next) = next_node {
+                table = Rc::clone(&next);
+            } else {
+                break;
+            }
+        }
     }
 }
 
