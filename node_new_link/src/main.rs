@@ -52,43 +52,6 @@ impl Node {
         }
     }
 
-    fn remove_table(current: Rc<RefCell<Node>>) {
-        let mut current = current;
-    
-        // 순방향 순회
-        loop {
-            let next = {
-                let current_borrow = current.borrow();
-                current_borrow.next.clone()
-            };
-    
-            match next {
-                Some(next_node) => current = next_node,
-                None => break,
-            }
-        }
-    
-        // 역방향 순회
-        let mut target = Rc::clone(&current);
-    
-        loop {
-            let previous = {
-                let target_borrow = target.borrow();
-                target_borrow.previous.clone()
-            };
-    
-            match previous {
-                Some(prev_weak) => {
-                    if let Some(prev_node) = prev_weak.upgrade() {
-                        target = prev_node;
-                    } else {
-                        break;
-                    }
-                }
-                None => break,
-            }
-        }
-    }
     fn add_data(current: Rc<RefCell<Node>>, num: i32) {
         // 3칸 위의 노드 찾기
         let mut target = Rc::clone(&current);
@@ -117,6 +80,24 @@ impl Node {
 
         up.borrow_mut().next = Some(Rc::clone(&inserted));
         down.borrow_mut().previous = Some(Rc::downgrade(&inserted));
+    }
+
+    fn remove_table(mut table: Rc<RefCell<Node>>) {
+        loop {
+            let previous_node = table.borrow().previous.clone();
+            if let Some(prev) = previous_node.and_then(|weak| weak.upgrade()) {  // Weak를 강한 참조로 업그레이드
+                prev.borrow_mut().next = None;
+            }
+
+            println!("remove table.borrow().num: {}", table.borrow().num);
+
+            let next_node = table.borrow().next.clone();
+            if let Some(next) = next_node {
+                table = Rc::clone(&next);
+            } else {
+                break;
+            }
+        }
     }
 }
 fn main() {
