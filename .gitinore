@@ -1,8 +1,13 @@
-/target/
+# Rust 빌드 결과물
+**/target/
+
+# Cargo lock 파일 (일반적으로 올리지 않음)
 Cargo.lock
-*.swp
-*.rs.bk
+
+# 편집기 설정 파일 (예: VSCode, IntelliJ)
 .idea/
 .vscode/
-/.DS_Store
+
+# OS별 파일 (예: macOS, Windows)
+.DS_Store
 Thumbs.db
