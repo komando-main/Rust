@@ -1,7 +1,0 @@
-C:\kmj\Rust\ezytutors\target\debug\deps\libnum_conv-f1ca4b2efcfd2126.rmeta: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-conv-0.1.0\src\lib.rs
-
-C:\kmj\Rust\ezytutors\target\debug\deps\libnum_conv-f1ca4b2efcfd2126.rlib: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-conv-0.1.0\src\lib.rs
-
-C:\kmj\Rust\ezytutors\target\debug\deps\num_conv-f1ca4b2efcfd2126.d: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-conv-0.1.0\src\lib.rs
-
-C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-conv-0.1.0\src\lib.rs:

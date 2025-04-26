@@ -1,5 +1,0 @@
-C:\kmj\Rust\complex\target\debug\build\num-rational-57934ed20bcb2674\build_script_build-57934ed20bcb2674.exe: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-rational-0.4.1\build.rs
-
-C:\kmj\Rust\complex\target\debug\build\num-rational-57934ed20bcb2674\build_script_build-57934ed20bcb2674.d: C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-rational-0.4.1\build.rs
-
-C:\Users\kmjkm\.cargo\registry\src\index.crates.io-6f17d22bba15001f\num-rational-0.4.1\build.rs:
