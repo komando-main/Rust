@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=C:\kmj\Rust\actix_web_\target\debug\build\mime_guess-d02d4c0575925e86\out\mime_types_generated.rs

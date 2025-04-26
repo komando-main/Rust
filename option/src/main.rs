@@ -24,7 +24,8 @@ fn main() -> Result<(), String>{
     //     println!("Error: {}", err);  // 오류 메시지를 출력
     //     -1  // 대체 값 반환
     // });
-    let out_value = opt(None).unwrap_or_default();
+    // let out_value = opt(None).unwrap_or_default();
+    let out_value = opt(None)?;
     println!("{out_value}");
     // match out_value {
     //     Ok(a)=>println!("{a}"),
@@ -59,5 +60,5 @@ fn opt(a:Option<i32>)->Result<i32, String>{
     // let num = a.ok_or("no data".to_string())?;
     // Ok(num)
 
-    Ok(a.ok_or("no data".to_string())?)
+    Ok(a.ok_or("opt() no data".to_string())?)
 }
