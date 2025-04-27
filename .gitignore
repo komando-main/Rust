@@ -11,3 +11,5 @@ Cargo.lock
 # OS별 파일 (예: macOS, Windows)
 .DS_Store
 Thumbs.db
+# 모든 exe 파일 무시
+*.exe
