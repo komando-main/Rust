@@ -74,7 +74,7 @@ impl FnNode for Node {
             next: Some(Rc::clone(&target)),
             previous: Some(Rc::downgrade(&up)),
         }));
-        up.borrow_mut().next = Some(Rc::clone(&inerted));//불리시킨 업의 넥스트에 클로그로 연결
+        up.borrow_mut().next = Some(Rc::clone(&inerted));//불리시킨 업의 넥스트에 클론으로 연결
         target.borrow_mut().previous = Some(Rc::downgrade(&inerted));//불리시킨 타겟에 프리비우스 다운그래이드로 연결
     }
     fn remove_table(node: Rc<RefCell<Self>>) {
