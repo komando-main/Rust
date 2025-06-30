@@ -69,7 +69,7 @@ impl FnNode for Node {
             target_ref.previous.as_ref().and_then(|w|w.upgrade()).expect("No date")
         };
 
-        let inerted = Rc::new(RefCell::new(Self{//새로 노드를 샐성하여 반호 임력
+        let inerted = Rc::new(RefCell::new(Self{//새로 노드를 샐성하여 번호 임력
             num,
             next: Some(Rc::clone(&target)),
             previous: Some(Rc::downgrade(&up)),
