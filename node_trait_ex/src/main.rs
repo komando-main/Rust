@@ -83,16 +83,16 @@ impl FnNode for Node {
         while let Some(n) = current {
             {
                 let node_ref = n.borrow_mut();
-                if let Some(prev_rc) = node_ref.previous.as_ref().and_then(|w|w.upgrade()) {
-                    prev_rc.borrow_mut().next = None;
+                if let Some(prev_rc) = node_ref.previous.as_ref().and_then(|w|w.upgrade()) {//이전 노드의 주소를 Weak에서 Rc로 업그레이드 하기
+                    prev_rc.borrow_mut().next = None;//이전 노드의 넥스트를 None으로 설정하여 연결을 끊기
                 }
                 println!("remove table.borrow().num: {}", node_ref.num);
             }
             let next = {
-                n.borrow().next.clone()
+                n.borrow().next.clone()//현재 노드의 넥스트 주소를 저장하기
             };
-            current = next;
-        }
+            current = next;//현재 노드의 넥스트 주소를 현재 노드로 설정하여 반복하기
+        }//모든 노드를 순회하며 연결을 끊기면 자동으로 삭재가된다
     }
 }
 
