@@ -8,7 +8,7 @@ struct Node {
     previous: Option<Weak<RefCell<Node>>>, //Weak는 Rc없이 단독 사용 불가
 }
 
-trait Fn_node {
+trait FnNode {
     fn new() -> Rc<RefCell<Self>>;
     fn link_node(current: Rc<RefCell<Self>>) -> Rc<RefCell<Self>>;
     fn run_table(start: Rc<RefCell<Self>>, count: i32) -> Rc<RefCell<Self>>;
@@ -17,7 +17,7 @@ trait Fn_node {
     fn remove_table(node: Rc<RefCell<Self>>);
 }
 
-impl Fn_node for Node {
+impl FnNode for Node {
     fn new() -> Rc<RefCell<Self>> {
         Rc::new(RefCell::new(Self {
             num: 0,
